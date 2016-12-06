@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>livio-pizzeria-console</artifactId>
+	<name>livio-pizzeria-console</name>
+
+	<parent>
+		<groupId>fr</groupId>
+		<artifactId>livio-pizzeria-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<build>
+		<finalName>pizzeria</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<mainClass>fr.pizzeria.console.PizzeriaAdminConsoleApp</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>livio-pizzeria-dao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>livio-pizzeria-model</artifactId>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>fichier</id>
+			<activation>
+				<file>
+					<exists>application.properties</exists>
+				</file>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryFichier</factoryValue.mode>
+			</properties>
+		</profile>
+		<profile>
+			<id>tableau</id>
+			<activation>
+				<file>
+					<exists>application.properties</exists>
+				</file>
+			</activation>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryTableau</factoryValue.mode>
+			</properties>
+		</profile>
+
+	</profiles>
+
+</project>
