@@ -38,14 +38,12 @@ public class PizzaDaoFichier implements PizzaDao {
 							CategoriePizza.valueOf(parts[3])));
 
 				} catch (IOException e) {
-					logger.debug("IOEXCEPTION");
-					logger.error(e.getMessage());
+					logger.log(null, "IOException directoryStream cannot be read", e);
 				}
 			});
 			directoryStream.close();
 		} catch (IOException e) {
-			logger.debug("IOEXCEPTION");
-			logger.error(e.getMessage());
+			logger.log(null, "IOException Directory stream cannot be found", e);
 		}
 		return pizzas;
 	}
@@ -60,8 +58,7 @@ public class PizzaDaoFichier implements PizzaDao {
 			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
 			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			logger.debug("IOEXCEPTION");
-			logger.error(e.getMessage());
+			logger.log(null, "IOException cannot create file ", e);
 		}
 	}
 

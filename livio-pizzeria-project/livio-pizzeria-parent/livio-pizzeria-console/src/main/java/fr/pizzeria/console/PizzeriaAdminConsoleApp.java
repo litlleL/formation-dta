@@ -35,14 +35,11 @@ public class PizzeriaAdminConsoleApp {
 		try {
 			daoFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
 		} catch (InstantiationException e) {
-			logger.debug("Erreur d'instanciation");
-			logger.error(e.getMessage());
+			logger.log(null, "Erreur d'instanciation", e);
 		} catch (IllegalAccessException e) {
-			logger.debug("Accès illégal");
-			logger.error(e.getMessage());
+			logger.log(null, "Accès illégal", e);
 		} catch (ClassNotFoundException e) {
-			logger.debug("Class Not Found");
-			logger.error(e.getMessage());
+			logger.log(null, "Class Not Found", e);
 		}
 
 		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory);
