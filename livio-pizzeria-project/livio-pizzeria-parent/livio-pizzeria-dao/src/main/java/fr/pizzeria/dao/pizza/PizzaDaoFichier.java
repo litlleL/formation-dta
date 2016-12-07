@@ -37,6 +37,7 @@ public class PizzaDaoFichier implements PizzaDao {
 					e.printStackTrace();
 				}
 			});
+			directoryStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
