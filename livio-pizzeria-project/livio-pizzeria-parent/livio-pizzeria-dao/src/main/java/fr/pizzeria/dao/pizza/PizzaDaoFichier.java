@@ -10,12 +10,16 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoFichier implements PizzaDao {
 	Path pathRep = FileSystems.getDefault().getPath(
 			"C:/Users/ETY10/Documents/Formation_2016/git/Formation_DTA/pizzeria-objet-console-factory/fichierDao/");
+
+	Logger logger = Logger.getLogger(PizzaDaoFichier.class);
 
 	@Override
 	public List<Pizza> findAll() {
@@ -34,12 +38,14 @@ public class PizzaDaoFichier implements PizzaDao {
 							CategoriePizza.valueOf(parts[3])));
 
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.debug("IOEXCEPTION");
+					logger.error(e.getMessage());
 				}
 			});
 			directoryStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.debug("IOEXCEPTION");
+			logger.error(e.getMessage());
 		}
 		return pizzas;
 	}
@@ -54,19 +60,22 @@ public class PizzaDaoFichier implements PizzaDao {
 			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
 			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.debug("IOEXCEPTION");
+			logger.error(e.getMessage());
 		}
 	}
 
 	@Override
 	public void updatePizza(int id, Pizza p) {
 		String code = findAll().get(id).getCode();
-		System.out.println(code);
+		logger.info(code);
 	}
 
 	@Override
 	public void deletePizza(int id) {
 		String code = findAll().get(id).getCode();
+		logger.info(code);
+
 	}
 
 }

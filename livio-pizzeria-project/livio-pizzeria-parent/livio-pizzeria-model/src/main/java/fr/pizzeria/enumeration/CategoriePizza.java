@@ -14,7 +14,7 @@ public enum CategoriePizza {
 		return value;
 	}
 
-	public void setValue(String value) {
+	private void setValue(String value) {
 		this.value = value;
 	}
 }
