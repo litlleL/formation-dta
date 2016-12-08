@@ -2,6 +2,7 @@ package fr.pizzeria.action;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import fr.pizzeria.dao.exception.PizzaException;
@@ -15,7 +16,7 @@ public class ListCategorie extends MenuInterface {
 
 	public ListCategorie(IhmUtil ihmUtil) {
 		super();
-		this.setLibelle("Lister les pizzas par catégorie");
+		this.setLibelle("Lister les pizzas par catï¿½gorie");
 		this.setIhmUtil(ihmUtil);
 	}
 
@@ -31,7 +32,7 @@ public class ListCategorie extends MenuInterface {
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(ListCategorie.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {

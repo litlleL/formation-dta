@@ -1,5 +1,7 @@
 package fr.pizzeria.action;
 
+import java.util.logging.Logger;
+
 import fr.pizzeria.ihm.IhmUtil;
 
 public class Exit extends MenuInterface {
@@ -16,13 +18,13 @@ public class Exit extends MenuInterface {
 
 	@Override
 	public void executeAction() {
-		System.out.println("Au revoir ^^'");
+		Logger.getLogger(Exit.class.getName()).info("Au revoir ^^'");
 		System.exit(0);
 	}
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(Exit.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {

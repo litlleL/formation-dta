@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
@@ -21,6 +22,7 @@ public class PizzaDaoFichier implements PizzaDao {
 	@Override
 	public void save(Pizza p) throws PizzaException {
 		Path pathFichier = FileSystems.getDefault().getPath(pathRep + "/" + p.getCode() + ".txt");
+		
 		try {
 			Files.createFile(pathFichier);
 			Charset charset = Charset.forName("UTF-8");
@@ -34,14 +36,17 @@ public class PizzaDaoFichier implements PizzaDao {
 
 	@Override
 	public void updatePizza(int id, Pizza p) throws PizzaException {
-		String code = findAll().get(id).getCode();
-		System.out.println(code);
+		int idPizza = id - 1;
+		String code = findAll().get(idPizza).getCode();
+		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
 	}
 
 	@Override
 	public void deletePizza(int id) throws PizzaException {
-		String code = findAll().get(id).getCode();
-		System.out.println(code);
+
+		int idPizza = id - 1;
+		String code = findAll().get(idPizza).getCode();
+		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
 
 	}
 

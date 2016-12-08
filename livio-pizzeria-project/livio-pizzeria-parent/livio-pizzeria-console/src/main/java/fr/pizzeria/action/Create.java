@@ -33,7 +33,7 @@ public class Create extends MenuInterface {
 
 		int categorie;
 		Logger.getLogger(Create.class.getName()).info("\n Veuillez choisir la ca�gorie de votre pizza \n");
-		Logger.getLogger(Create.class.getName()).info("1 -> Viande \n2 -> Sans Viande \n3 -> Poisson");
+		Logger.getLogger(Create.class.getName()).info("\n1 -> Viande \n2 -> Sans Viande \n3 -> Poisson");
 		categorie = ihmUtil.getScanner().nextInt();
 
 		if (categorie == 1) {

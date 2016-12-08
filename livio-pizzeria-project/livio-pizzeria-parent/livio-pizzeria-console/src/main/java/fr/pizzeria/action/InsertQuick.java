@@ -1,5 +1,7 @@
 package fr.pizzeria.action;
 
+import java.util.logging.Logger;
+
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
@@ -19,7 +21,7 @@ public class InsertQuick extends MenuInterface {
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(InsertQuick.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {

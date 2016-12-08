@@ -28,15 +28,18 @@ public class PizzaDaoTableau implements PizzaDao {
 
 	@Override
 	public void updatePizza(int id, Pizza p) {
-		pizza.get(id).setCode(p.getCode());
-		pizza.get(id).setNom(p.getNom());
-		pizza.get(id).setPrix(p.getPrix());
-		pizza.get(id).setCategoriePizza(p.getCategoriePizza());
+		int idPizza = id - 1;
+		pizza.get(idPizza).setCode(p.getCode());
+		pizza.get(idPizza).setNom(p.getNom());
+		pizza.get(idPizza).setPrix(p.getPrix());
+		pizza.get(idPizza).setCategoriePizza(p.getCategoriePizza());
 	}
 
 	@Override
 	public void deletePizza(int id) {
-		pizza.remove(id);
+
+		int idPizza = id - 1;
+		pizza.remove(idPizza);
 	}
 
 }

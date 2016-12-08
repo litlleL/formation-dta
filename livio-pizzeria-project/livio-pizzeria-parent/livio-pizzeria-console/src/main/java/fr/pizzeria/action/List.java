@@ -1,5 +1,7 @@
 package fr.pizzeria.action;
 
+import java.util.logging.Logger;
+
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
@@ -18,13 +20,12 @@ public class List extends MenuInterface {
 	public void executeAction() throws PizzaException {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
-		System.out.println(
-				"------------------ " + Pizza.getNbPizzas() + " pizzas crées depuis le lancement du programme");
+		Logger.getLogger(List.class.getName()).info("------------------ " + Pizza.getNbPizzas() + " pizzas crï¿½es depuis le lancement du programme");
 	}
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(List.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {

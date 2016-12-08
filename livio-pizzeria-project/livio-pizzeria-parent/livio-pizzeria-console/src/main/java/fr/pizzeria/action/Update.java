@@ -1,5 +1,7 @@
 package fr.pizzeria.action;
 
+import java.util.logging.Logger;
+
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.ihm.IhmUtil;
@@ -19,26 +21,26 @@ public class Update extends MenuInterface {
 	public void executeAction() throws PizzaException {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
-		System.out.println("Veuillez choisir la pizza à modifier\n");
+		Logger.getLogger(Update.class.getName()).info("Veuillez choisir la pizza à modifier\n");
 
 		int choix;
 		choix = this.ihmUtil.getScanner().nextInt();
 
 		String codePizza;
-		System.out.println("Veuillez saisir le nouveau code \n");
+		Logger.getLogger(Update.class.getName()).info("Veuillez saisir le nouveau code \n");
 		codePizza = ihmUtil.getScanner().next();
 
 		String nomPizza;
-		System.out.println("Veuillez saisir le nouveau nom(sans espace) \n");
+		Logger.getLogger(Update.class.getName()).info("Veuillez saisir le nouveau nom(sans espace) \n");
 		nomPizza = ihmUtil.getScanner().next();
 
 		Double prixPizza;
-		System.out.println("Veuillez saisir le nouveau prix");
+		Logger.getLogger(Update.class.getName()).info("Veuillez saisir le nouveau prix");
 		prixPizza = ihmUtil.getScanner().nextDouble();
 
 		int categorie;
-		System.out.println("Veuillez choisir la ca�gorie de votre pizza");
-		System.out.println("1 -> Viande \n2 -> Sans Viande \n3 -> Poisson");
+		Logger.getLogger(Update.class.getName()).info("Veuillez choisir la ca�gorie de votre pizza");
+		Logger.getLogger(Update.class.getName()).info("\n1 -> Viande \n2 -> Sans Viande \n3 -> Poisson");
 		categorie = ihmUtil.getScanner().nextInt();
 
 		if (categorie == 1) {
@@ -56,7 +58,7 @@ public class Update extends MenuInterface {
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(Update.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {

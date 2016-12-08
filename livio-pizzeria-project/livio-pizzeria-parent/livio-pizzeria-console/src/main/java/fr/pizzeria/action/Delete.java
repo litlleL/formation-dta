@@ -1,5 +1,7 @@
 package fr.pizzeria.action;
 
+import java.util.logging.Logger;
+
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
@@ -17,16 +19,16 @@ public class Delete extends MenuInterface {
 	public void executeAction() throws PizzaException {
 
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
-
-		System.out.println("Veuillez choisir la pizza à supprimer\n");
+		
+		Logger.getLogger(Delete.class.getName()).info("Veuillez choisir la pizza à supprimer\n");
 		int choix;
 		choix = this.ihmUtil.getScanner().nextInt();
-		this.ihmUtil.getPizzaDao().deletePizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId());
+		this.ihmUtil.getPizzaDao().deletePizza(choix);
 	}
 
 	@Override
 	public void show() {
-		System.out.println(this.getLibelle());
+		Logger.getLogger(Delete.class.getName()).info(this.getLibelle());
 	}
 
 	public IhmUtil getIhmUtil() {
