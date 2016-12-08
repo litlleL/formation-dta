@@ -54,29 +54,30 @@ public class PizzaDaoFichier implements PizzaDao {
 	@Override
 	public List<Pizza> findAll() throws PizzaException {
 		Pizza.setNbPizzas(0);
-		List<Pizza> pizzas = new ArrayList<Pizza>();
-		try {
-			DirectoryStream<Path> directoryStream = Files.newDirectoryStream(pathRep);
+		List<Pizza> pizzas = new ArrayList<>();
+		try(DirectoryStream<Path> directoryStream = Files.newDirectoryStream(pathRep);) {
+
 			Charset charset = Charset.forName("UTF-8");
+			
 			directoryStream.forEach(directory -> {
 				try {
 
 					List<String> pizza = Files.readAllLines(directory, charset);
 					String str = pizza.get(0);
-					String parts[] = str.split(",");
+					String[] parts = str.split(",");
 					pizzas.add(new Pizza(parts[0], parts[1], Double.parseDouble(parts[2]),
 							CategoriePizza.valueOf(parts[3])));
 
 				} catch (IOException e) {
 					Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
-					e.printStackTrace();
+					throw new RuntimeException(e);
 				}
 			});
-			directoryStream.close();
 		} catch (IOException e) {
 			Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
 			throw new PizzaException(e);
 		}
+	
 		return pizzas;
 
 	}
