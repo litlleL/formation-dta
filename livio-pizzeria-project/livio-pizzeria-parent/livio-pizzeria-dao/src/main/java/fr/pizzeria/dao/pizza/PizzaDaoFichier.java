@@ -30,6 +30,7 @@ public class PizzaDaoFichier implements PizzaDao {
 			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
 			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
 		} catch (IOException e) {
+			Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
 			throw new PizzaException(e);
 		}
 	}
@@ -67,11 +68,13 @@ public class PizzaDaoFichier implements PizzaDao {
 							CategoriePizza.valueOf(parts[3])));
 
 				} catch (IOException e) {
+					Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
 					e.printStackTrace();
 				}
 			});
 			directoryStream.close();
 		} catch (IOException e) {
+			Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
 			throw new PizzaException(e);
 		}
 		return pizzas;
