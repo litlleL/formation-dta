@@ -69,7 +69,6 @@ public class PizzaDaoBase implements PizzaDao {
 
 		return execute((Statement statement) -> {
 			Pizza.setNbPizzas(0);
-
 			List<Pizza> pizzas = new ArrayList<>();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM PIZZA");
 			while (resultSet.next()) {
@@ -127,6 +126,10 @@ public class PizzaDaoBase implements PizzaDao {
 			deletePizzaSt.executeUpdate();
 			return Void.TYPE;
 		});
+
+	}
+
+	public void insertByThree(List<Pizza> pizza) {
 
 	}
 
