@@ -18,9 +18,5 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>livio-pizzeria-model</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
 	</dependencies>
 </project>
