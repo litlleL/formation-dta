@@ -44,12 +44,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
+
 	</build>
 
 	<dependencies>
@@ -65,30 +60,35 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>livio-pizzeria-model</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 	</dependencies>
 
 	<profiles>
 		<profile>
 			<id>fichier</id>
-			<activation>
-				<file>
-					<exists>application.properties</exists>
-				</file>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryFichier</factoryValue.mode>
 			</properties>
 		</profile>
+
 		<profile>
 			<id>tableau</id>
-			<activation>
-				<file>
-					<exists>application.properties</exists>
-				</file>
-			</activation>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryTableau</factoryValue.mode>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>base</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryBase</factoryValue.mode>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass> </jdbc.pass>
 			</properties>
 		</profile>
 

@@ -11,6 +11,7 @@ import fr.pizzeria.action.ListCategorie;
 import fr.pizzeria.action.ListCher;
 import fr.pizzeria.action.MenuInterface;
 import fr.pizzeria.action.Update;
+import fr.pizzeria.dao.exception.PizzaException;
 
 public class Menu {
 
@@ -29,7 +30,7 @@ public class Menu {
 		this.reader = ihmUtil;
 	}
 
-	public void start() {
+	public void start() throws PizzaException {
 		showMenu();
 		executeAction();
 	}
@@ -40,7 +41,7 @@ public class Menu {
 		});
 	}
 
-	private void executeAction() {
+	private void executeAction() throws PizzaException {
 
 		System.out.println("Faites un choix  \n");
 

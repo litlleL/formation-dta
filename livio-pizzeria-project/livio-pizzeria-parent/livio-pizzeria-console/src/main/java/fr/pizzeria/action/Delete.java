@@ -1,5 +1,6 @@
 package fr.pizzeria.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
 public class Delete extends MenuInterface {
@@ -13,13 +14,13 @@ public class Delete extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() {
+	public void executeAction() throws PizzaException {
 
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
 		System.out.println("Veuillez choisir la pizza à supprimer\n");
 		int choix;
-		choix = this.ihmUtil.getScanner().nextInt() - 1;
+		choix = this.ihmUtil.getScanner().nextInt();
 		this.ihmUtil.getPizzaDao().deletePizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId());
 	}
 

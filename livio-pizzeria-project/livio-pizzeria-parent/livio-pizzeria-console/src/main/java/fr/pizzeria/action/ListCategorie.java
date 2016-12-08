@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
@@ -19,7 +20,7 @@ public class ListCategorie extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() {
+	public void executeAction() throws PizzaException {
 		Map<CategoriePizza, List<Pizza>> map =
 
 				this.ihmUtil.getPizzaDao().findAll().stream()

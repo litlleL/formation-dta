@@ -1,5 +1,6 @@
 package fr.pizzeria.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
@@ -15,13 +16,13 @@ public class Update extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() {
+	public void executeAction() throws PizzaException {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
 		System.out.println("Veuillez choisir la pizza à modifier\n");
 
 		int choix;
-		choix = this.ihmUtil.getScanner().nextInt() - 1;
+		choix = this.ihmUtil.getScanner().nextInt();
 
 		String codePizza;
 		System.out.println("Veuillez saisir le nouveau code \n");
@@ -41,17 +42,14 @@ public class Update extends MenuInterface {
 		categorie = ihmUtil.getScanner().nextInt();
 
 		if (categorie == 1) {
-			this.ihmUtil.getPizzaDao().updatePizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(),
-					new Pizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(), codePizza, nomPizza, prixPizza,
-							CategoriePizza.VIANDE));
+			this.ihmUtil.getPizzaDao().updatePizza(choix,
+					new Pizza(choix, codePizza, nomPizza, prixPizza, CategoriePizza.VIANDE));
 		} else if (categorie == 2) {
-			this.ihmUtil.getPizzaDao().updatePizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(),
-					new Pizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(), codePizza, nomPizza, prixPizza,
-							CategoriePizza.SANS_VIANDE));
+			this.ihmUtil.getPizzaDao().updatePizza(choix,
+					new Pizza(choix, codePizza, nomPizza, prixPizza, CategoriePizza.SANS_VIANDE));
 		} else {
-			this.ihmUtil.getPizzaDao().updatePizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(),
-					new Pizza(this.ihmUtil.getPizzaDao().findAll().get(choix).getId(), codePizza, nomPizza, prixPizza,
-							CategoriePizza.POISSON));
+			this.ihmUtil.getPizzaDao().updatePizza(choix,
+					new Pizza(choix, codePizza, nomPizza, prixPizza, CategoriePizza.POISSON));
 		}
 
 	}

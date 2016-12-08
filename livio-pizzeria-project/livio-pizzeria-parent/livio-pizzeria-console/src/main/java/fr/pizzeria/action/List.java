@@ -1,5 +1,6 @@
 package fr.pizzeria.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -14,7 +15,7 @@ public class List extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() {
+	public void executeAction() throws PizzaException {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
 		System.out.println(

@@ -1,5 +1,6 @@
 package fr.pizzeria.action;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
 public class ListCher extends MenuInterface {
@@ -13,12 +14,11 @@ public class ListCher extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() {
+	public void executeAction() throws PizzaException {
 
 		System.out.println(this.ihmUtil.getPizzaDao().findAll().stream()
 				.max((pizza1, pizza2) -> Double.compare(pizza1.getPrix(), pizza2.getPrix())).get());
 
-		//
 		// pizza.stream().max(Comparator.comparing(Pizza::getPrix))
 	}
 

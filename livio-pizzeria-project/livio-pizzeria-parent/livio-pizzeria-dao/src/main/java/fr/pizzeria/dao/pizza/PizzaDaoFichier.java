@@ -10,15 +10,43 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoFichier implements PizzaDao {
-	Path pathRep = FileSystems.getDefault().getPath(
-			"C:/Users/ETY10/Documents/Formation_2016/git/Formation_DTA/pizzeria-objet-console-factory/fichierDao/");
+	Path pathRep = FileSystems.getDefault()
+			.getPath(System.getProperty("user.dir") + "/livio-pizzeria-dao/src/main/resources/fichierDao");
 
 	@Override
-	public List<Pizza> findAll() {
+	public void save(Pizza p) throws PizzaException {
+		Path pathFichier = FileSystems.getDefault().getPath(pathRep + "/" + p.getCode() + ".txt");
+		try {
+			Files.createFile(pathFichier);
+			Charset charset = Charset.forName("UTF-8");
+			List<String> lines = new ArrayList<>();
+			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
+			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			throw new PizzaException(e);
+		}
+	}
+
+	@Override
+	public void updatePizza(int id, Pizza p) throws PizzaException {
+		String code = findAll().get(id).getCode();
+		System.out.println(code);
+	}
+
+	@Override
+	public void deletePizza(int id) throws PizzaException {
+		String code = findAll().get(id).getCode();
+		System.out.println(code);
+
+	}
+
+	@Override
+	public List<Pizza> findAll() throws PizzaException {
 		Pizza.setNbPizzas(0);
 		List<Pizza> pizzas = new ArrayList<Pizza>();
 		try {
@@ -39,35 +67,9 @@ public class PizzaDaoFichier implements PizzaDao {
 			});
 			directoryStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new PizzaException(e);
 		}
 		return pizzas;
-	}
-
-	@Override
-	public void save(Pizza p) {
-		Path pathFichier = FileSystems.getDefault().getPath(pathRep + "/" + p.getCode() + ".txt");
-		try {
-			Files.createFile(pathFichier);
-			Charset charset = Charset.forName("UTF-8");
-			List<String> lines = new ArrayList<>();
-			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
-			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void updatePizza(int id, Pizza p) {
-		String code = findAll().get(id).getCode();
-		System.out.println(code);
-	}
-
-	@Override
-	public void deletePizza(int id) {
-		String code = findAll().get(id).getCode();
-		System.out.println(code);
 
 	}
 
