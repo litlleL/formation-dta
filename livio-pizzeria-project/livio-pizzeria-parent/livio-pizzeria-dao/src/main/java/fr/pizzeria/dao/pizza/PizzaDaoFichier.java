@@ -10,16 +10,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoFichier implements PizzaDao {
 	Path pathRep = FileSystems.getDefault().getPath(
 			"C:/Users/ETY10/Documents/Formation_2016/git/Formation_DTA/pizzeria-objet-console-factory/fichierDao/");
-
-	Logger logger = Logger.getLogger(PizzaDaoFichier.class);
 
 	@Override
 	public List<Pizza> findAll() {
@@ -38,12 +34,12 @@ public class PizzaDaoFichier implements PizzaDao {
 							CategoriePizza.valueOf(parts[3])));
 
 				} catch (IOException e) {
-					logger.log(null, "IOException directoryStream cannot be read", e);
+					e.printStackTrace();
 				}
 			});
 			directoryStream.close();
 		} catch (IOException e) {
-			logger.log(null, "IOException Directory stream cannot be found", e);
+			e.printStackTrace();
 		}
 		return pizzas;
 	}
@@ -58,20 +54,20 @@ public class PizzaDaoFichier implements PizzaDao {
 			lines.add(p.getCode() + "," + p.getNom() + "," + p.getPrix() + "," + p.getCategoriePizza());
 			Files.write(pathFichier, lines, charset, StandardOpenOption.APPEND);
 		} catch (IOException e) {
-			logger.log(null, "IOException cannot create file ", e);
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void updatePizza(int id, Pizza p) {
 		String code = findAll().get(id).getCode();
-		logger.info(code);
+		System.out.println(code);
 	}
 
 	@Override
 	public void deletePizza(int id) {
 		String code = findAll().get(id).getCode();
-		logger.info(code);
+		System.out.println(code);
 
 	}
 
