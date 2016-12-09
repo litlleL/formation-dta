@@ -70,7 +70,7 @@ public class PizzaDaoFichier implements PizzaDao {
 
 				} catch (IOException e) {
 					Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
-					throw new RuntimeException(e);
+					throw new PizzaException(e);
 				}
 			});
 		} catch (IOException e) {
