@@ -24,6 +24,11 @@ les différents projets enfants(modules).
 * Pour tester en utilisant la base de donnée tableau
    * mvn clean install -Ptableau
    * java -jar livio-pizzeria-console\target\pizzeria.jar 
+
+* Pour tester en utilisant la base de donnée (PhpMyAdmin)
+(Avoir un base de donnée pizzeria)
+   * mvn clean install -Pbase
+   * java -jar livio-pizzeria-console\target\pizzeria.jar 
  
  ## Bugs
  
