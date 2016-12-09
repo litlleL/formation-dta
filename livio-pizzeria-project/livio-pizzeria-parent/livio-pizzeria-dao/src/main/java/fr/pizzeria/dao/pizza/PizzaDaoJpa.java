@@ -14,71 +14,91 @@ import fr.pizzeria.model.Pizza;
 public class PizzaDaoJpa implements PizzaDao {
 
 	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
 
 	public PizzaDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 	}
 
+	@FunctionalInterface
+	interface IRunJql<T> {
+		T exec(EntityManager entityManager);
+	}
+
+	public <T> T execute(IRunJql<T> run) {
+		try {
+			entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
+			entityManager = entityManagerFactory.createEntityManager();
+
+			return run.exec(entityManager);
+
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			throw new PizzaException(e);
+		} finally {
+			if (entityManager != null) {
+				entityManager.close();
+			}
+			entityManagerFactory.close();
+		}
+	}
+
 	@Override
 	public List<Pizza> findAll() throws PizzaException {
-		entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		TypedQuery<Pizza> pizzaQuery = entityManager.createQuery("select p from Pizza p", Pizza.class);
-		List<Pizza> pizzas = pizzaQuery.getResultList();
+		return execute((EntityManager entity) -> {
+			TypedQuery<Pizza> pizzaQuery = entityManager.createQuery("select p from Pizza p", Pizza.class);
+			List<Pizza> pizzas = pizzaQuery.getResultList();
+			return pizzas;
+		});
 
-		entityManager.close();
-		entityManagerFactory.close();
-		return pizzas;
 	}
 
 	@Override
 	public void save(Pizza p) throws PizzaException {
-		entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		entityManager.getTransaction().begin();
-		entityManager.persist(p);
-		entityManager.getTransaction().commit();
+		execute((EntityManager entity) -> {
+			entityManager.getTransaction().begin();
+			entityManager.persist(p);
+			entityManager.getTransaction().commit();
+			return null;
+		});
 
-		entityManager.close();
-		entityManagerFactory.close();
 	}
 
 	@Override
 	public void updatePizza(int id, Pizza p) throws PizzaException {
-		entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		Pizza pizza = entityManager.find(Pizza.class, id);
-		if (entityManager != null) {
-			entityManager.getTransaction().begin();
-			pizza.setCode(p.getCode());
-			pizza.setNom(p.getNom());
-			pizza.setPrix(p.getPrix());
-			pizza.setCategoriePizza(p.getCategoriePizza());
-			entityManager.getTransaction().commit();
-		}
+		execute((EntityManager entity) -> {
+			Pizza pizza = entityManager.find(Pizza.class, id);
+			if (entityManager != null) {
+				entityManager.getTransaction().begin();
+				pizza.setCode(p.getCode());
+				pizza.setNom(p.getNom());
+				pizza.setPrix(p.getPrix());
+				pizza.setCategoriePizza(p.getCategoriePizza());
+				entityManager.getTransaction().commit();
+			}
+			return null;
+		});
 
-		entityManager.close();
-		entityManagerFactory.close();
 	}
 
 	@Override
 	public void deletePizza(int id) throws PizzaException {
-		entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		Pizza pizza = entityManager.find(Pizza.class, id);
+		execute((EntityManager entity) -> {
+			Pizza pizza = entityManager.find(Pizza.class, id);
 
-		if (entityManager != null) {
-			entityManager.getTransaction().begin();
-			entityManager.remove(pizza);
-			entityManager.getTransaction().commit();
-		}
+			if (entityManager != null) {
+				entityManager.getTransaction().begin();
+				entityManager.remove(pizza);
+				entityManager.getTransaction().commit();
+			}
 
-		entityManager.close();
-		entityManagerFactory.close();
+			return null;
+		});
+
 	}
 
 }

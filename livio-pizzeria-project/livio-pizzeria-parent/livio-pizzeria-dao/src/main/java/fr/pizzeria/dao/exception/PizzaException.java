@@ -29,6 +29,10 @@ public class PizzaException extends RuntimeException {
 	public PizzaException(ReflectiveOperationException e) {
 		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
+	
+	public PizzaException(Exception e) {
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
+	}
 
 	public PizzaException(String string) {
 		Logger.getLogger(PizzaException.class.getName()).info(string);
