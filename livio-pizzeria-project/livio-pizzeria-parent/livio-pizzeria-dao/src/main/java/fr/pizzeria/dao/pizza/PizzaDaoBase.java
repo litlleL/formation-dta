@@ -93,7 +93,7 @@ public class PizzaDaoBase implements PizzaDao {
 
 		executePrep((Connection con) -> {
 			PreparedStatement insertPizza = con
-					.prepareStatement("INSERT INTO PIZZA(code,nom,prix,categorie) VALUES(?,?,?,?)");
+					.prepareStatement("INSERT INTO PIZZA(code,nom,prix,categoriePizza) VALUES(?,?,?,?)");
 			insertPizza.setString(1, p.getCode());
 			insertPizza.setString(2, p.getNom());
 			insertPizza.setDouble(3, p.getPrix());
@@ -108,7 +108,7 @@ public class PizzaDaoBase implements PizzaDao {
 	public void updatePizza(int id, Pizza p) throws PizzaException {
 		executePrep((Connection con) -> {
 			PreparedStatement updatePizza = con
-					.prepareStatement("UPDATE PIZZA SET code=?, nom=?, prix=?, categorie=?  WHERE ID=?");
+					.prepareStatement("UPDATE PIZZA SET code=?, nom=?, prix=?, categoriePizza=?  WHERE ID=?");
 			updatePizza.setString(1, p.getCode());
 			updatePizza.setString(2, p.getNom());
 			updatePizza.setDouble(3, p.getPrix());
@@ -151,7 +151,7 @@ public class PizzaDaoBase implements PizzaDao {
 				list.forEach(p -> {
 					try {
 						PreparedStatement insertPizza = con
-								.prepareStatement("INSERT INTO PIZZA(code,nom,prix,categorie) VALUES(?,?,?,?)");
+								.prepareStatement("INSERT INTO PIZZA(code,nom,prix,categoriePizza) VALUES(?,?,?,?)");
 						insertPizza.setString(1, p.getCode());
 						insertPizza.setString(2, p.getNom());
 						insertPizza.setDouble(3, p.getPrix());

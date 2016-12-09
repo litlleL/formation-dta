@@ -1,18 +1,31 @@
 package fr.pizzeria.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import fr.pizzeria.enumeration.CategoriePizza;
 
+@Entity
 public class Pizza {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String code;
 	private String nom;
 	private Double prix;
-	private static int nbPizzas;
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza categoriePizza;
+	@Transient
+	private static int nbPizzas;
 
 	public CategoriePizza getCategoriePizza() {
 		return categoriePizza;
@@ -107,7 +120,7 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return "Pizza [id=" + (id + 1) + ", code=" + code + ", nom=" + nom + ", prix=" + prix + "]";
+		return "Pizza [id=" + id + ", code=" + code + ", nom=" + nom + ", prix=" + prix + "]";
 	}
 
 }

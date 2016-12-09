@@ -20,7 +20,8 @@ public class List extends MenuInterface {
 	public void executeAction() throws PizzaException {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
-		Logger.getLogger(List.class.getName()).info("------------------ " + Pizza.getNbPizzas() + " pizzas cr�es depuis le lancement du programme");
+		Logger.getLogger(List.class.getName())
+				.info("------------------ " + Pizza.getNbPizzas() + " pizzas cr�es depuis le lancement du programme");
 	}
 
 	@Override
