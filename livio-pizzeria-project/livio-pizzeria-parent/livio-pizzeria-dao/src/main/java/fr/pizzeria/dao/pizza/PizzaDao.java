@@ -14,4 +14,8 @@ public interface PizzaDao {
 	void updatePizza(int id, Pizza p) throws PizzaException;
 
 	void deletePizza(int id) throws PizzaException;
+
+	default void switchData() throws PizzaException {
+		throw new PizzaException("Pas d'implémentation");
+	}
 }

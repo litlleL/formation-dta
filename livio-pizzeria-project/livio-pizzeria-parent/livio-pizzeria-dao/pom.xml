@@ -19,9 +19,8 @@
 			<artifactId>livio-pizzeria-model</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<scope>runtime</scope>
-			</dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+		</dependency>
 	</dependencies>
 </project>

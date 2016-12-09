@@ -57,6 +57,7 @@
       <id>base</id>
       <properties>
         <jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+        <dao.source>fr.pizzeria.dao.service.PizzaFactoryFichier</dao.source>
         <factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryBase</factoryValue.mode>
         <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
         <jdbc.user>root</jdbc.user>

@@ -4,31 +4,34 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public class PizzaException extends Exception {
+public class PizzaException extends RuntimeException {
 
 	public PizzaException(SQLException e) {
-		e.printStackTrace();
-		Logger.getLogger(PizzaException.class.getName()).log(null, e.getMessage());
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
 
 	public PizzaException(IOException e) {
-		e.printStackTrace();
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
 
 	public PizzaException(ClassNotFoundException e) {
-		e.printStackTrace();
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
 
 	public PizzaException(InstantiationException e) {
-		e.printStackTrace();
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
 
 	public PizzaException(IllegalAccessException e) {
-		e.printStackTrace();
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
 	}
 
 	public PizzaException(ReflectiveOperationException e) {
-		e.printStackTrace();
+		Logger.getLogger(PizzaException.class.getName()).info(e.getMessage());
+	}
+
+	public PizzaException(String string) {
+		Logger.getLogger(PizzaException.class.getName()).info(string);
 	}
 
 }

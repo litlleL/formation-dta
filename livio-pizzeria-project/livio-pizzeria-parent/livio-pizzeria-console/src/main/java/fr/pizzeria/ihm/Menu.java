@@ -33,7 +33,6 @@ public class Menu {
 	}
 
 	public void start() throws PizzaException {
-
 		showMenu();
 		executeAction();
 	}

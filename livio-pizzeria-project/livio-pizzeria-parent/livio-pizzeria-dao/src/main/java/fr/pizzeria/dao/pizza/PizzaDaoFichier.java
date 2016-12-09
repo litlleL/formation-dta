@@ -22,7 +22,7 @@ public class PizzaDaoFichier implements PizzaDao {
 	@Override
 	public void save(Pizza p) throws PizzaException {
 		Path pathFichier = FileSystems.getDefault().getPath(pathRep + "/" + p.getCode() + ".txt");
-		
+
 		try {
 			Files.createFile(pathFichier);
 			Charset charset = Charset.forName("UTF-8");
@@ -55,10 +55,10 @@ public class PizzaDaoFichier implements PizzaDao {
 	public List<Pizza> findAll() throws PizzaException {
 		Pizza.setNbPizzas(0);
 		List<Pizza> pizzas = new ArrayList<>();
-		try(DirectoryStream<Path> directoryStream = Files.newDirectoryStream(pathRep);) {
+		try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(pathRep);) {
 
 			Charset charset = Charset.forName("UTF-8");
-			
+
 			directoryStream.forEach(directory -> {
 				try {
 
@@ -77,7 +77,7 @@ public class PizzaDaoFichier implements PizzaDao {
 			Logger.getLogger(PizzaDaoFichier.class.getName()).info(e.getMessage());
 			throw new PizzaException(e);
 		}
-	
+
 		return pizzas;
 
 	}

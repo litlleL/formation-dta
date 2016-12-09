@@ -63,6 +63,10 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -84,6 +88,7 @@
 			<id>base</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryBase</factoryValue.mode>
+				<dao.source>fr.pizzeria.dao.service.PizzaFactoryFichier</dao.source>
 				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 				<jdbc.user>root</jdbc.user>

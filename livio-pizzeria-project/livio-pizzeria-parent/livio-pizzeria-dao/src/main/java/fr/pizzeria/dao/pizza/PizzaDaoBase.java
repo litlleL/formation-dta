@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import org.apache.commons.collections4.ListUtils;
+
 import fr.pizzeria.dao.exception.PizzaException;
+import fr.pizzeria.dao.service.PizzaDaoFactory;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -129,7 +132,48 @@ public class PizzaDaoBase implements PizzaDao {
 
 	}
 
-	public void insertByThree(List<Pizza> pizza) {
+	@Override
+	public void switchData() throws PizzaException {
+		ResourceBundle bundle = ResourceBundle.getBundle("application");
+		String daoSource = bundle.getString("dao.source");
+
+		PizzaDaoFactory daoFactory;
+		try {
+			daoFactory = (PizzaDaoFactory) Class.forName(daoSource).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			throw new PizzaException(e);
+		}
+		List<Pizza> pizzas = daoFactory.getPizzaDaoFactory().findAll();
+
+		executePrep((Connection con) -> {
+			con.setAutoCommit(false);
+			ListUtils.partition(pizzas, 3).forEach(list -> {
+				list.forEach(p -> {
+					try {
+						PreparedStatement insertPizza = con
+								.prepareStatement("INSERT INTO PIZZA(code,nom,prix,categorie) VALUES(?,?,?,?)");
+						insertPizza.setString(1, p.getCode());
+						insertPizza.setString(2, p.getNom());
+						insertPizza.setDouble(3, p.getPrix());
+						insertPizza.setString(4, p.getCategoriePizza().toString());
+						insertPizza.executeUpdate();
+					} catch (SQLException e) {
+						try {
+							con.rollback();
+						} catch (SQLException e1) {
+							throw new PizzaException(e1);
+						}
+						throw new PizzaException(e);
+					}
+				});
+				try {
+					con.commit();
+				} catch (SQLException e) {
+					throw new PizzaException(e);
+				}
+			});
+			return null;
+		});
 
 	}
 

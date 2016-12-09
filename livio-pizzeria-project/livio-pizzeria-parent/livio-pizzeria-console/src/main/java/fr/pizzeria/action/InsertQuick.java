@@ -16,7 +16,8 @@ public class InsertQuick extends MenuInterface {
 
 	@Override
 	public void executeAction() throws PizzaException {
-
+		Logger.getLogger(InsertQuick.class.getName()).info("Envoi des donnees de la memoire vers la base \n");
+		this.ihmUtil.getPizzaDao().switchData();
 	}
 
 	@Override
