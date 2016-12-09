@@ -8,13 +8,23 @@ import fr.pizzeria.dao.service.PizzaDaoFactory;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.ihm.Menu;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class PizzeriaAdminConsoleApp {
 
 	private PizzeriaAdminConsoleApp() {
 
 	}
 
-	public static void main(String[] args) throws PizzaException {
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String daoImpl = bundle.getString("dao.impl");

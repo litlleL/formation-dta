@@ -5,10 +5,20 @@ import java.util.logging.Logger;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class ListCher extends MenuInterface {
 
 	private IhmUtil ihmUtil;
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public ListCher(IhmUtil ihmUtil) {
 		super();
 		this.setLibelle("Afficher pizza la plus cher");
@@ -33,6 +43,10 @@ public class ListCher extends MenuInterface {
 		return ihmUtil;
 	}
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public void setIhmUtil(IhmUtil ihmUtil) {
 		this.ihmUtil = ihmUtil;
 	}

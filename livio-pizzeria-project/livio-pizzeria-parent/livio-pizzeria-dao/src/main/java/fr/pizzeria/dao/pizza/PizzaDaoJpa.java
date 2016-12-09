@@ -11,6 +11,14 @@ import javax.persistence.TypedQuery;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ * @see PizzaDao
+ * 
+ *      Date 09/12/2016
+ */
 public class PizzaDaoJpa implements PizzaDao {
 
 	private EntityManagerFactory entityManagerFactory;
@@ -20,11 +28,21 @@ public class PizzaDaoJpa implements PizzaDao {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 	}
 
+	/**
+	 * 
+	 *
+	 * @param <T>
+	 */
 	@FunctionalInterface
 	interface IRunJql<T> {
 		T exec(EntityManager entityManager);
 	}
 
+	/**
+	 * 
+	 * @param run
+	 * @return
+	 */
 	public <T> T execute(IRunJql<T> run) {
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");

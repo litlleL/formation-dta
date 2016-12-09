@@ -5,9 +5,19 @@ import java.util.logging.Logger;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class InsertQuick extends MenuInterface {
 	private IhmUtil ihmUtil;
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public InsertQuick(IhmUtil ihmUtil) {
 		super();
 		this.setIhmUtil(ihmUtil);
@@ -29,6 +39,10 @@ public class InsertQuick extends MenuInterface {
 		return ihmUtil;
 	}
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public void setIhmUtil(IhmUtil ihmUtil) {
 		this.ihmUtil = ihmUtil;
 	}

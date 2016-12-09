@@ -13,6 +13,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import fr.pizzeria.enumeration.CategoriePizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ * 
+ *         Date 09/12/2016
+ */
+
 @Entity
 public class Pizza {
 
@@ -95,6 +103,14 @@ public class Pizza {
 		Pizza.nbPizzas = nbPizzas;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param code
+	 * @param nom
+	 * @param prix
+	 * @param categoriePizza
+	 */
 	public Pizza(int id, String code, String nom, double prix, CategoriePizza categoriePizza) {
 		super();
 		this.id = nbPizzas;
@@ -104,6 +120,13 @@ public class Pizza {
 		this.categoriePizza = categoriePizza;
 	}
 
+	/**
+	 * 
+	 * @param code
+	 * @param nom
+	 * @param prix
+	 * @param categoriePizza
+	 */
 	public Pizza(String code, String nom, double prix, CategoriePizza categoriePizza) {
 		super();
 		this.id = nbPizzas;

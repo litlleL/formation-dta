@@ -6,10 +6,20 @@ import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class List extends MenuInterface {
 
 	private IhmUtil ihmUtil;
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public List(IhmUtil ihmUtil) {
 		super();
 		this.setIhmUtil(ihmUtil);
@@ -33,6 +43,10 @@ public class List extends MenuInterface {
 		return ihmUtil;
 	}
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public void setIhmUtil(IhmUtil ihmUtil) {
 		this.ihmUtil = ihmUtil;
 	}

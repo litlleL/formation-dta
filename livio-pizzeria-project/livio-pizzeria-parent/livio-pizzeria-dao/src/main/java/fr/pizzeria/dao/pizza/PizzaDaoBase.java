@@ -18,18 +18,41 @@ import fr.pizzeria.dao.service.PizzaDaoFactory;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ * @see PizzaDao
+ * 
+ *      Date 09/12/2016
+ */
 public class PizzaDaoBase implements PizzaDao {
-
+	/**
+	 * 
+	 *
+	 * @param <T>
+	 */
 	@FunctionalInterface
 	interface IRunSql<T> {
 		T exec(Statement st) throws SQLException;
 	}
 
+	/**
+	 * 
+	 *
+	 * @param <T>
+	 */
 	@FunctionalInterface
 	interface IRunSqlPrep<T> {
 		T execPrep(Connection conn) throws SQLException;
 	}
 
+	/**
+	 * 
+	 * @param run
+	 * @return
+	 * @throws PizzaException
+	 */
 	public <T> T execute(IRunSql<T> run) throws PizzaException {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
@@ -49,6 +72,12 @@ public class PizzaDaoBase implements PizzaDao {
 
 	}
 
+	/**
+	 * 
+	 * @param run
+	 * @return
+	 * @throws PizzaException
+	 */
 	public <T> T executePrep(IRunSqlPrep<T> run) throws PizzaException {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("jdbc");

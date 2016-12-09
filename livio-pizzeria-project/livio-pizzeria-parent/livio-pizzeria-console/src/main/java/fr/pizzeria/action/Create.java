@@ -7,10 +7,20 @@ import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class Create extends MenuInterface {
 
 	private IhmUtil ihmUtil;
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public Create(IhmUtil ihmUtil) {
 		super();
 		this.setLibelle("Ajouter une pizza");
@@ -54,6 +64,10 @@ public class Create extends MenuInterface {
 		return ihmUtil;
 	}
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public void setIhmUtil(IhmUtil ihmUtil) {
 		this.ihmUtil = ihmUtil;
 	}

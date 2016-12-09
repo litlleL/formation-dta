@@ -5,12 +5,23 @@ import java.util.Scanner;
 import fr.pizzeria.dao.pizza.PizzaDao;
 import fr.pizzeria.dao.service.PizzaDaoFactory;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class IhmUtil {
 
 	private Scanner scanner;
 
 	private PizzaDao pizzaDao;
 
+	/**
+	 * 
+	 * @param scanner
+	 * @param pizzaFactoryTableau
+	 */
 	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaFactoryTableau) {
 		super();
 		this.scanner = scanner;

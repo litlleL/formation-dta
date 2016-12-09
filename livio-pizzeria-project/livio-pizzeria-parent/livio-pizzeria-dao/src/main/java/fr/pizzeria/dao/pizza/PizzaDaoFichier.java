@@ -15,6 +15,14 @@ import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ * @see PizzaDao
+ * 
+ *      Date 09/12/2016
+ */
 public class PizzaDaoFichier implements PizzaDao {
 	Path pathRep = FileSystems.getDefault()
 			.getPath(System.getProperty("user.dir") + "/livio-pizzeria-dao/src/main/resources/fichierDao");

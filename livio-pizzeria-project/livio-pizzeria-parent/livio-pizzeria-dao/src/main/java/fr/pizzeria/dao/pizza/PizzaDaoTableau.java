@@ -6,6 +6,14 @@ import java.util.List;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ * @see PizzaDao
+ * 
+ *      Date 09/12/2016
+ */
 public class PizzaDaoTableau implements PizzaDao {
 
 	private List<Pizza> pizza = new ArrayList<Pizza>();

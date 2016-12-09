@@ -14,12 +14,22 @@ import fr.pizzeria.action.MenuInterface;
 import fr.pizzeria.action.Update;
 import fr.pizzeria.dao.exception.PizzaException;
 
+/**
+ * 
+ * @author Asdrubal Livio
+ *
+ *         Date 09/12/2016
+ */
 public class Menu {
 
 	Map<Integer, MenuInterface> listeOutils = new HashMap<Integer, MenuInterface>();
 
 	IhmUtil reader;
 
+	/**
+	 * 
+	 * @param ihmUtil
+	 */
 	public Menu(IhmUtil ihmUtil) {
 		listeOutils.put(0, new List(ihmUtil));
 		listeOutils.put(1, new ListCategorie(ihmUtil));
@@ -32,6 +42,10 @@ public class Menu {
 		this.reader = ihmUtil;
 	}
 
+	/**
+	 * 
+	 * @throws PizzaException
+	 */
 	public void start() throws PizzaException {
 		showMenu();
 		executeAction();
@@ -41,6 +55,10 @@ public class Menu {
 		listeOutils.forEach((k, v) -> System.out.println((k + 1) + ": " + v.getLibelle()));
 	}
 
+	/**
+	 * 
+	 * @throws PizzaException
+	 */
 	private void executeAction() throws PizzaException {
 
 		System.out.println("Faites un choix  \n");

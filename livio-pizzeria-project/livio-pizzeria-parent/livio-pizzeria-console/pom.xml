@@ -103,6 +103,7 @@
 				<jdbc.pass></jdbc.pass>
 			</properties>
 		</profile>
+		
 		<profile>
 			<id>jpa</id>
 			<properties>
