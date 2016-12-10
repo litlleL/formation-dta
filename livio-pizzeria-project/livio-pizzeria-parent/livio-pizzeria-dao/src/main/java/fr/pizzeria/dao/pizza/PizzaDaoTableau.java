@@ -16,7 +16,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaDaoTableau implements PizzaDao {
 
-	private List<Pizza> pizza = new ArrayList<Pizza>();
+	private List<Pizza> pizza = new ArrayList<>();
 
 	public PizzaDaoTableau() {
 		pizza.add(new Pizza("MAR", "margherita", 12.50, CategoriePizza.VIANDE));
@@ -36,7 +36,7 @@ public class PizzaDaoTableau implements PizzaDao {
 
 	@Override
 	public void updatePizza(int id, Pizza p) {
-		int idPizza = id - 1;
+		int idPizza = id;
 		pizza.get(idPizza).setCode(p.getCode());
 		pizza.get(idPizza).setNom(p.getNom());
 		pizza.get(idPizza).setPrix(p.getPrix());
@@ -46,7 +46,9 @@ public class PizzaDaoTableau implements PizzaDao {
 	@Override
 	public void deletePizza(int id) {
 
-		int idPizza = id - 1;
+		int idPizza = id;
+
+		Pizza.setNbPizzas(Pizza.getNbPizzas() - 1);
 		pizza.remove(idPizza);
 	}
 

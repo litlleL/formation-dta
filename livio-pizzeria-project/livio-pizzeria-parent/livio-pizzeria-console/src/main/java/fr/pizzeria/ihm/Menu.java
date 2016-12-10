@@ -22,7 +22,7 @@ import fr.pizzeria.dao.exception.PizzaException;
  */
 public class Menu {
 
-	Map<Integer, MenuInterface> listeOutils = new HashMap<Integer, MenuInterface>();
+	Map<Integer, MenuInterface> listeOutils = new HashMap<>();
 
 	IhmUtil reader;
 
@@ -46,7 +46,7 @@ public class Menu {
 	 * 
 	 * @throws PizzaException
 	 */
-	public void start() throws PizzaException {
+	public void start() {
 		showMenu();
 		executeAction();
 	}
@@ -59,7 +59,7 @@ public class Menu {
 	 * 
 	 * @throws PizzaException
 	 */
-	private void executeAction() throws PizzaException {
+	private void executeAction() {
 
 		System.out.println("Faites un choix  \n");
 

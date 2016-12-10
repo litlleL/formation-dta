@@ -2,7 +2,6 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
-import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
 /**
@@ -26,7 +25,7 @@ public class Delete extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() {
 
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 

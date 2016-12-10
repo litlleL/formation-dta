@@ -2,7 +2,6 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
-import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
@@ -28,7 +27,7 @@ public class Create extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() {
 		String codePizza;
 		Logger.getLogger(Create.class.getName()).info("Veuillez saisir le code \n");
 		codePizza = ihmUtil.getScanner().next();

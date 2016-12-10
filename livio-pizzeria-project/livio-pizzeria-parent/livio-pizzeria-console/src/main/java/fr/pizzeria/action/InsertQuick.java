@@ -2,7 +2,6 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
-import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
 /**
@@ -25,7 +24,7 @@ public class InsertQuick extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() {
 		Logger.getLogger(InsertQuick.class.getName()).info("Envoi des donnees de la memoire vers la base \n");
 		this.ihmUtil.getPizzaDao().switchData();
 	}

@@ -104,14 +104,13 @@ public class PizzaDaoBase implements PizzaDao {
 			List<Pizza> pizzas = new ArrayList<>();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM PIZZA");
 			while (resultSet.next()) {
+				int id = resultSet.getInt("ID");
 				String code = resultSet.getString("code");
 				String nom = resultSet.getString("nom");
 				Double prix = resultSet.getDouble("prix");
-				String categorie = resultSet.getString("categorie");
-
-				pizzas.add(new Pizza(code, nom, prix, CategoriePizza.valueOf(categorie)));
+				String categorie = resultSet.getString("categoriePizza");
+				pizzas.add(new Pizza(id, code, nom, prix, CategoriePizza.valueOf(categorie)));
 			}
-
 			return pizzas;
 		});
 
@@ -135,6 +134,7 @@ public class PizzaDaoBase implements PizzaDao {
 
 	@Override
 	public void updatePizza(int id, Pizza p) throws PizzaException {
+		int idPizza = id;
 		executePrep((Connection con) -> {
 			PreparedStatement updatePizza = con
 					.prepareStatement("UPDATE PIZZA SET code=?, nom=?, prix=?, categoriePizza=?  WHERE ID=?");
@@ -142,7 +142,7 @@ public class PizzaDaoBase implements PizzaDao {
 			updatePizza.setString(2, p.getNom());
 			updatePizza.setDouble(3, p.getPrix());
 			updatePizza.setString(4, p.getCategoriePizza().getValue().toString());
-			updatePizza.setInt(5, id);
+			updatePizza.setInt(5, idPizza);
 
 			updatePizza.executeUpdate();
 			return null;
@@ -152,9 +152,10 @@ public class PizzaDaoBase implements PizzaDao {
 
 	@Override
 	public void deletePizza(int id) throws PizzaException {
+		int idPizza = id;
 		executePrep((Connection connection) -> {
 			PreparedStatement deletePizzaSt = connection.prepareStatement("DELETE FROM PIZZA WHERE ID = ?");
-			deletePizzaSt.setInt(1, id);
+			deletePizzaSt.setInt(1, idPizza);
 			deletePizzaSt.executeUpdate();
 			return Void.TYPE;
 		});

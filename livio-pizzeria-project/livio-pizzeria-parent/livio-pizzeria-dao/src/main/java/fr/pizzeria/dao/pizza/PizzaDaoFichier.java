@@ -44,22 +44,6 @@ public class PizzaDaoFichier implements PizzaDao {
 	}
 
 	@Override
-	public void updatePizza(int id, Pizza p) throws PizzaException {
-		int idPizza = id - 1;
-		String code = findAll().get(idPizza).getCode();
-		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
-	}
-
-	@Override
-	public void deletePizza(int id) throws PizzaException {
-
-		int idPizza = id - 1;
-		String code = findAll().get(idPizza).getCode();
-		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
-
-	}
-
-	@Override
 	public List<Pizza> findAll() throws PizzaException {
 		Pizza.setNbPizzas(0);
 		List<Pizza> pizzas = new ArrayList<>();
@@ -90,4 +74,19 @@ public class PizzaDaoFichier implements PizzaDao {
 
 	}
 
+	@Override
+	public void updatePizza(int id, Pizza p) throws PizzaException {
+		int idPizza = id - 1;
+		String code = findAll().get(idPizza).getCode();
+		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
+	}
+
+	@Override
+	public void deletePizza(int id) throws PizzaException {
+
+		int idPizza = id - 1;
+		String code = findAll().get(idPizza).getCode();
+		Logger.getLogger(PizzaDaoFichier.class.getName()).info(code);
+
+	}
 }

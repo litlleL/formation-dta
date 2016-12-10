@@ -2,7 +2,6 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
-import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.ihm.IhmUtil;
 
 /**
@@ -26,7 +25,7 @@ public class ListCher extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() {
 
 		System.out.println(this.ihmUtil.getPizzaDao().findAll().stream()
 				.max((pizza1, pizza2) -> Double.compare(pizza1.getPrix(), pizza2.getPrix())).get());
