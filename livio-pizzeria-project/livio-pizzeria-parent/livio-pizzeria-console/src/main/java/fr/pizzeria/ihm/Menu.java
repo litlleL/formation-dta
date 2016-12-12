@@ -12,7 +12,6 @@ import fr.pizzeria.action.ListCategorie;
 import fr.pizzeria.action.ListCher;
 import fr.pizzeria.action.MenuInterface;
 import fr.pizzeria.action.Update;
-import fr.pizzeria.dao.exception.PizzaException;
 
 /**
  * 
@@ -42,10 +41,6 @@ public class Menu {
 		this.reader = ihmUtil;
 	}
 
-	/**
-	 * 
-	 * @throws PizzaException
-	 */
 	public void start() {
 		showMenu();
 		executeAction();
@@ -55,10 +50,6 @@ public class Menu {
 		listeOutils.forEach((k, v) -> System.out.println((k + 1) + ": " + v.getLibelle()));
 	}
 
-	/**
-	 * 
-	 * @throws PizzaException
-	 */
 	private void executeAction() {
 
 		System.out.println("Faites un choix  \n");

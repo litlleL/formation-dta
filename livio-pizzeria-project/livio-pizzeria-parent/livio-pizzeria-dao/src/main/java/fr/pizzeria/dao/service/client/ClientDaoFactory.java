@@ -14,25 +14,17 @@ public abstract class ClientDaoFactory {
 
 	/**
 	 * 
-	 * @param pizzaDao
+	 * @param clientDao
 	 */
 	public ClientDaoFactory(ClientDao clientDao) {
-		setClientDao(clientDao);
+		this.clientDao = clientDao;
 	}
 
 	/**
-	 * @return the clientDao
+	 * @return
 	 */
 	public ClientDao getClientDao() {
 		return clientDao;
-	}
-
-	/**
-	 * @param clientDao
-	 *            the clientDao to set
-	 */
-	public void setClientDao(ClientDao clientDao) {
-		this.clientDao = clientDao;
 	}
 
 }

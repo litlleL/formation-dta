@@ -1,4 +1,4 @@
-package fr.pizzeria.action;
+package fr.pizzeria.client.action;
 
 import fr.pizzeria.dao.exception.PizzaException;
 
@@ -7,7 +7,6 @@ import fr.pizzeria.dao.exception.PizzaException;
  * @author Asdrubal Livio
  * 
  * @since 12/12/2016
- *
  */
 public abstract class MenuInterface {
 

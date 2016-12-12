@@ -1,4 +1,4 @@
-package fr.pizzeria.ihm;
+package fr.pizzeria.client.ihm;
 
 import java.util.Scanner;
 
@@ -29,6 +29,7 @@ public class IhmUtil {
 		super();
 		this.scanner = scanner;
 		this.pizzaDao = pizzaDao.getPizzaDaoFactory();
+		this.clientDao = clientDao.getClientDao();
 	}
 
 	public Scanner getScanner() {

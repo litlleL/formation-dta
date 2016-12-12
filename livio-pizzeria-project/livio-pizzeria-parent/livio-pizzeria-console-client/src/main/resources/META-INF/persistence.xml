@@ -3,6 +3,10 @@
 	<persistence-unit name="${persitence.unit.client}" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	<class>fr.pizzeria.model.Client</class>
+	<class>fr.pizzeria.model.utils.AbstractPerson</class>
+	<class>fr.pizzeria.model.Commande</class>
+	<class>fr.pizzeria.model.Livreur</class>
+	<class>fr.pizzeria.model.Pizza</class>
 	<properties>
 			<property name="javax.persistence.jdbc.url" value="${jdbc.url}"/>
 			<property name="javax.persistence.jdbc.user" value="${jdbc.user}"/>

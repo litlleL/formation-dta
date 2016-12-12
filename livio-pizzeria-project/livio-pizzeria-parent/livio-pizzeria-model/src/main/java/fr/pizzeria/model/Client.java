@@ -27,8 +27,21 @@ public class Client extends AbstractPerson {
 	@OneToMany(mappedBy = "clientId")
 	List<Commande> commande;
 
-	private Client() {
+	/**
+	 * 
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 * @param email
+	 * @param motDePasse
+	 */
+	public Client(String nom, String prenom, String adresse, String email, String motDePasse) {
 		super();
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setAdresse(adresse);
+		this.setEmail(email);
+		this.setMotDePasse(motDePasse);
 	}
 
 	public String getAdresse() {
@@ -55,4 +68,9 @@ public class Client extends AbstractPerson {
 		this.motDePasse = motDePasse;
 	}
 
+	@Override
+	public String toString() {
+		return "Client [nom=" + this.getNom() + ", prenom=" + this.getPrenom() + ", adresse=" + this.getAdresse()
+				+ ", email=" + this.getEmail() + ", mdp=" + this.getMotDePasse() + "]";
+	}
 }

@@ -1,8 +1,8 @@
-package fr.pizzeria.action;
+package fr.pizzeria.client.action;
 
 import java.util.logging.Logger;
 
-import fr.pizzeria.ihm.IhmUtil;
+import fr.pizzeria.client.ihm.IhmUtil;
 
 /**
  * 

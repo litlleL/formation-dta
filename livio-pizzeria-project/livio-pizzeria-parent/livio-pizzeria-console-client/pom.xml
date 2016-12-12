@@ -22,7 +22,7 @@
 					<configuration>
 						<archive>
 							<manifest>
-								<mainClass>fr.pizzeria.console.PizzeriaClientConsoleApp</mainClass>
+								<mainClass>fr.pizzeria.client.console.PizzeriaClientConsoleApp</mainClass>
 							</manifest>
 						</archive>
 					</configuration>

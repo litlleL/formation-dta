@@ -20,6 +20,10 @@ public abstract class PizzaDaoFactory {
 		this.pizzaDao = pizzaDao;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public PizzaDao getPizzaDaoFactory() {
 		return pizzaDao;
 	}

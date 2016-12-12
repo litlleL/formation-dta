@@ -8,4 +8,8 @@ public class ClientException extends RuntimeException {
 		Logger.getLogger(ClientException.class.getName()).info(string);
 	}
 
+	public ClientException(Exception e) {
+		Logger.getLogger(ClientException.class.getName()).info(e.getMessage());
+	}
+
 }

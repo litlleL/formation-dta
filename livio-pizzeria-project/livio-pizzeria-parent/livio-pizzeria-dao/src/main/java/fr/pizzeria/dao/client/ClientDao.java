@@ -19,14 +19,15 @@ public interface ClientDao {
 	 * @param client
 	 * @throws ClientException
 	 */
-	Boolean inscription(Client client) throws ClientException;
+	void inscription(Client client) throws ClientException;
 
 	/**
 	 * 
-	 * @param client
+	 * @param nom
+	 * @param mdp
 	 * @throws ClientException
 	 */
-	Boolean connection(String nom, String mdp) throws ClientException;
+	void connection(String nom, String mdp) throws ClientException;
 
 	/**
 	 * 

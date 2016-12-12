@@ -1,13 +1,13 @@
-package fr.pizzeria.console;
+package fr.pizzeria.client.console;
 
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import fr.pizzeria.client.ihm.IhmUtil;
+import fr.pizzeria.client.ihm.Menu;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.dao.service.client.ClientDaoFactory;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
-import fr.pizzeria.ihm.IhmUtil;
-import fr.pizzeria.ihm.Menu;
 
 /**
  * 
