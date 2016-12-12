@@ -9,7 +9,7 @@ package fr.pizzeria.enumeration;
  */
 public enum Statut {
 
-	EN_ATTENTE("En attente"), EN_COURS("En cours de livraison"), TERMINER("Livrée");
+	NON_TRAITEE("non traitée"), EN_ATTENTE("En attente"), EN_COURS("En cours de livraison"), TERMINER("Livrée");
 
 	private String value;
 

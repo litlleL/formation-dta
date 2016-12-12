@@ -19,12 +19,10 @@ import fr.pizzeria.model.Pizza;
  * @since 09/12/2016
  */
 public class PizzaDaoJpa implements PizzaDao {
-
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 
 	public PizzaDaoJpa() {
-
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria-console"));
 	}

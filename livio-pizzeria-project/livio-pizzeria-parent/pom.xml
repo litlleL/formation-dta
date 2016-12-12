@@ -15,6 +15,7 @@
 		<module>livio-pizzeria-model</module>
 		<module>livio-pizzeria-dao</module>
 		<module>livio-pizzeria-console</module>
+		<module>livio-pizzeria-console-client</module>
 	</modules>
 
 	<build>
@@ -83,5 +84,56 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+<profiles>
+		<profile>
+			<id>fichier</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryFichier</factoryValue.mode>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>tableau</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryTableau</factoryValue.mode>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>base</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryBase</factoryValue.mode>
+				<dao.source>fr.pizzeria.dao.service.PizzaFactoryFichier</dao.source>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>jpa</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
+				<persitence.unit>livio-pizzeria-console</persitence.unit>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
+			</properties>
+		</profile>
+		<profile>
+			<id>jpac</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
+				<persitence.unit>livio-pizzeria-console</persitence.unit>
+				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

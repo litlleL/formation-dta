@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import fr.pizzeria.enumeration.Statut;
 import fr.pizzeria.model.utils.AbstractPerson;
@@ -49,10 +49,13 @@ public class Commande {
 
 	)
 	private List<Pizza> pizzas;
-	@OneToOne
-	private AbstractPerson livreurId;
-	@OneToOne
+
+	@ManyToOne
+	@JoinColumn(name = "clientId")
 	private AbstractPerson clientId;
+	@ManyToOne
+	@JoinColumn(name = "livreurId")
+	private AbstractPerson livreurId;
 
 	private Commande() {
 		super();

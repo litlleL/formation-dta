@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import org.apache.commons.collections4.ListUtils;
 
 import fr.pizzeria.dao.exception.PizzaException;
-import fr.pizzeria.dao.service.PizzaDaoFactory;
+import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 

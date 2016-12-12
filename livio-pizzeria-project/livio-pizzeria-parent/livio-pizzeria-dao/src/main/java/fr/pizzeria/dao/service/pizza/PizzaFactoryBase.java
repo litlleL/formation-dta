@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.service;
+package fr.pizzeria.dao.service.pizza;
 
 import fr.pizzeria.dao.pizza.PizzaDaoBase;
 
