@@ -18,7 +18,7 @@ import fr.pizzeria.enumeration.CategoriePizza;
  * @author Asdrubal Livio
  *
  * 
- *         Date 09/12/2016
+ * @since 09/12/2016
  */
 
 @Entity
@@ -32,8 +32,47 @@ public class Pizza {
 	private Double prix;
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza categoriePizza;
+	private String urlImage;
 	@Transient
 	private static int nbPizzas;
+
+	public Pizza() {
+		super();
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @param code
+	 * @param nom
+	 * @param prix
+	 * @param categoriePizza
+	 */
+	public Pizza(int id, String code, String nom, double prix, CategoriePizza categoriePizza) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categoriePizza = categoriePizza;
+	}
+
+	/**
+	 * 
+	 * @param code
+	 * @param nom
+	 * @param prix
+	 * @param categoriePizza
+	 */
+	public Pizza(String code, String nom, double prix, CategoriePizza categoriePizza) {
+		super();
+		this.id = nbPizzas;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categoriePizza = categoriePizza;
+		nbPizzas += 1;
+	}
 
 	public CategoriePizza getCategoriePizza() {
 		return categoriePizza;
@@ -103,47 +142,17 @@ public class Pizza {
 		Pizza.nbPizzas = nbPizzas;
 	}
 
-	/**
-	 * 
-	 * @param id
-	 * @param code
-	 * @param nom
-	 * @param prix
-	 * @param categoriePizza
-	 */
-	public Pizza(int id, String code, String nom, double prix, CategoriePizza categoriePizza) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categoriePizza = categoriePizza;
-	}
-
-	/**
-	 * 
-	 * @param code
-	 * @param nom
-	 * @param prix
-	 * @param categoriePizza
-	 */
-	public Pizza(String code, String nom, double prix, CategoriePizza categoriePizza) {
-		super();
-		this.id = nbPizzas;
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categoriePizza = categoriePizza;
-		nbPizzas += 1;
-	}
-
-	public Pizza() {
-		super();
-	}
-
 	@Override
 	public String toString() {
 		return "Pizza [id=" + id + ", code=" + code + ", nom=" + nom + ", prix=" + prix + "]";
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 }

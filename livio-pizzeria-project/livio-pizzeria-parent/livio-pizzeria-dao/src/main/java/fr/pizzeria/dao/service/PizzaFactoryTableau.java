@@ -7,7 +7,7 @@ import fr.pizzeria.dao.pizza.PizzaDaoTableau;
  * @author Asdrubal Livio
  * @see PizzaDaoTableau
  * 
- *      Date 09/12/2016
+ * @since 09/12/2016
  */
 public class PizzaFactoryTableau extends PizzaDaoFactory {
 

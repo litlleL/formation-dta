@@ -24,7 +24,7 @@ import fr.pizzeria.model.Pizza;
  *
  * @see PizzaDao
  * 
- *      Date 09/12/2016
+ * @since 09/12/2016
  */
 public class PizzaDaoBase implements PizzaDao {
 	/**

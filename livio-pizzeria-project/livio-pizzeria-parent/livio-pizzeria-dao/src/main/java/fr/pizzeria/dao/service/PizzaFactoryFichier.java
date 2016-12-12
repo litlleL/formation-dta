@@ -8,7 +8,7 @@ import fr.pizzeria.dao.pizza.PizzaDaoFichier;
  * @see PizzaDaoFichier
  * 
  * 
- *      Date 09/12/2016
+ * @since 09/12/2016
  */
 public class PizzaFactoryFichier extends PizzaDaoFactory {
 

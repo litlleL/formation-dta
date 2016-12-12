@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * @author Asdrubal Livio
  *
  * 
- *         Date 09/12/2016
+ * @since 09/12/2016
  */
 public class PizzaException extends RuntimeException {
 

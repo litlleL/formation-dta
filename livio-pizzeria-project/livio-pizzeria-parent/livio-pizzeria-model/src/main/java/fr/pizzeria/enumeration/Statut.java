@@ -3,13 +3,13 @@ package fr.pizzeria.enumeration;
 /**
  * 
  * @author Asdrubal Livio
- *
  * 
- * @since 09/12/2016
+ * @since 12/12/2016
+ *
  */
-public enum CategoriePizza {
+public enum Statut {
 
-	VIANDE("VIANDE"), POISSON("POISSON"), SANS_VIANDE("SANS_VIANDE");
+	EN_ATTENTE("En attente"), EN_COURS("En cours de livraison"), TERMINER("Livrée");
 
 	private String value;
 
@@ -17,7 +17,7 @@ public enum CategoriePizza {
 	 * 
 	 * @param value
 	 */
-	private CategoriePizza(String value) {
+	private Statut(String value) {
 		this.setValue(value);
 	}
 

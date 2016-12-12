@@ -16,8 +16,7 @@ import fr.pizzeria.model.Pizza;
  * @author Asdrubal Livio
  *
  * @see PizzaDao
- * 
- *      Date 09/12/2016
+ * @since 09/12/2016
  */
 public class PizzaDaoJpa implements PizzaDao {
 
@@ -25,7 +24,9 @@ public class PizzaDaoJpa implements PizzaDao {
 	private EntityManager entityManager;
 
 	public PizzaDaoJpa() {
+
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria-console"));
 	}
 
 	/**
@@ -45,19 +46,19 @@ public class PizzaDaoJpa implements PizzaDao {
 	 */
 	public <T> T execute(IRunJql<T> run) {
 		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("livio-pizzeria-console");
-			entityManager = entityManagerFactory.createEntityManager();
+			setEntityManager(getEntityManagerFactory().createEntityManager());
 
 			return run.exec(entityManager);
 
 		} catch (Exception e) {
-			entityManager.getTransaction().rollback();
+			if (getEntityManager() != null) {
+				getEntityManager().getTransaction().rollback();
+			}
 			throw new PizzaException(e);
 		} finally {
 			if (entityManager != null) {
-				entityManager.close();
+				getEntityManager().close();
 			}
-			entityManagerFactory.close();
 		}
 	}
 
@@ -65,9 +66,8 @@ public class PizzaDaoJpa implements PizzaDao {
 	public List<Pizza> findAll() throws PizzaException {
 
 		return execute((EntityManager entity) -> {
-			TypedQuery<Pizza> pizzaQuery = entityManager.createQuery("select p from Pizza p", Pizza.class);
-			List<Pizza> pizzas = pizzaQuery.getResultList();
-			return pizzas;
+			TypedQuery<Pizza> pizzaQuery = getEntityManager().createQuery("select p from Pizza p", Pizza.class);
+			return pizzaQuery.getResultList();
 		});
 
 	}
@@ -76,9 +76,9 @@ public class PizzaDaoJpa implements PizzaDao {
 	public void save(Pizza p) throws PizzaException {
 
 		execute((EntityManager entity) -> {
-			entityManager.getTransaction().begin();
-			entityManager.persist(p);
-			entityManager.getTransaction().commit();
+			getEntityManager().getTransaction().begin();
+			getEntityManager().persist(p);
+			getEntityManager().getTransaction().commit();
 			return null;
 		});
 
@@ -88,14 +88,14 @@ public class PizzaDaoJpa implements PizzaDao {
 	public void updatePizza(int id, Pizza p) throws PizzaException {
 
 		execute((EntityManager entity) -> {
-			Pizza pizza = entityManager.find(Pizza.class, id);
-			if (entityManager != null) {
-				entityManager.getTransaction().begin();
+			Pizza pizza = getEntityManager().find(Pizza.class, id);
+			if (getEntityManager() != null) {
+				getEntityManager().getTransaction().begin();
 				pizza.setCode(p.getCode());
 				pizza.setNom(p.getNom());
 				pizza.setPrix(p.getPrix());
 				pizza.setCategoriePizza(p.getCategoriePizza());
-				entityManager.getTransaction().commit();
+				getEntityManager().getTransaction().commit();
 			}
 			return null;
 		});
@@ -106,17 +106,53 @@ public class PizzaDaoJpa implements PizzaDao {
 	public void deletePizza(int id) throws PizzaException {
 
 		execute((EntityManager entity) -> {
-			Pizza pizza = entityManager.find(Pizza.class, id);
+			Pizza pizza = getEntityManager().find(Pizza.class, id);
 
-			if (entityManager != null) {
-				entityManager.getTransaction().begin();
-				entityManager.remove(pizza);
-				entityManager.getTransaction().commit();
+			if (getEntityManager() != null) {
+				getEntityManager().getTransaction().begin();
+				getEntityManager().remove(pizza);
+				getEntityManager().getTransaction().commit();
 			}
 
 			return null;
 		});
 
+	}
+
+	@Override
+	public void quitApp() throws PizzaException {
+
+		this.getEntityManagerFactory().close();
+	}
+
+	/**
+	 * @return the entityManagerFactory
+	 */
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	/**
+	 * @param entityManagerFactory
+	 *            the entityManagerFactory to set
+	 */
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
+
+	/**
+	 * @return the entityManager
+	 */
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	/**
+	 * @param entityManager
+	 *            the entityManager to set
+	 */
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 }

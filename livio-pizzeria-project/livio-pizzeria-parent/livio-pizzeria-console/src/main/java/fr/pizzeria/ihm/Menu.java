@@ -18,7 +18,7 @@ import fr.pizzeria.dao.exception.PizzaException;
  * 
  * @author Asdrubal Livio
  *
- *         Date 09/12/2016
+ * @since 09/12/2016
  */
 public class Menu {
 
@@ -68,8 +68,10 @@ public class Menu {
 		if (Integer.parseInt(value) < 8) {
 			listeOutils.get(Integer.parseInt(value) - 1).executeAction();
 			start();
-		} else if (Integer.parseInt(value) == 99) {
+		} else if (Integer.parseInt(value) >= 8) {
 			listeOutils.get(listeOutils.size() - 1).executeAction();
+			this.reader.getPizzaDao().quitApp();
+			return;
 		}
 
 	}

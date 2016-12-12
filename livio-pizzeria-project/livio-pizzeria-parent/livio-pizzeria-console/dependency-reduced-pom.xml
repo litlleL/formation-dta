@@ -66,7 +66,7 @@
     <profile>
       <id>jpa</id>
       <properties>
-        <jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+        <jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
         <factoryValue.mode>fr.pizzeria.dao.service.PizzaFactoryJPA</factoryValue.mode>
         <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
         <jdbc.user>root</jdbc.user>

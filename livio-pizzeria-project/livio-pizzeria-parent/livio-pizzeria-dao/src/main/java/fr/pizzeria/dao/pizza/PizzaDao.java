@@ -10,7 +10,7 @@ import fr.pizzeria.model.Pizza;
  * @author Asdrubal Livio
  *
  * 
- *         Date 09/12/2016
+ * @since 09/12/2016
  */
 public interface PizzaDao {
 	/**
@@ -47,6 +47,10 @@ public interface PizzaDao {
 	 * @throws PizzaException
 	 */
 	default void switchData() throws PizzaException {
+		throw new PizzaException("Pas d'implementation !!");
+	}
+
+	default void quitApp() throws PizzaException {
 		throw new PizzaException("Pas d'implementation !!");
 	}
 }

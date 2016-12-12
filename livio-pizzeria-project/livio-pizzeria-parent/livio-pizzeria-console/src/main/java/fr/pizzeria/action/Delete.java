@@ -8,7 +8,7 @@ import fr.pizzeria.ihm.IhmUtil;
  * 
  * @author Asdrubal Livio
  *
- *         Date 09/12/2016
+ * @since 09/12/2016
  */
 public class Delete extends MenuInterface {
 
