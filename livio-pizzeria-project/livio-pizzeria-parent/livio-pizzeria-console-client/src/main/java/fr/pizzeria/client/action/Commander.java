@@ -1,5 +1,6 @@
 package fr.pizzeria.client.action;
 
+import fr.pizzeria.client.ihm.IhmUtil;
 import fr.pizzeria.dao.exception.PizzaException;
 
 /**
@@ -10,6 +11,10 @@ import fr.pizzeria.dao.exception.PizzaException;
  *
  */
 public class Commander extends MenuInterface {
+
+	public Commander(IhmUtil ihmUtil) {
+
+	}
 
 	@Override
 	public void executeAction() throws PizzaException {

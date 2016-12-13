@@ -19,7 +19,7 @@ import fr.pizzeria.action.Update;
  *
  * @since 09/12/2016
  */
-public class Menu {
+public class MenuAdmin {
 
 	Map<Integer, MenuInterface> listeOutils = new HashMap<>();
 
@@ -29,7 +29,7 @@ public class Menu {
 	 * 
 	 * @param ihmUtil
 	 */
-	public Menu(IhmUtil ihmUtil) {
+	public MenuAdmin(IhmUtil ihmUtil) {
 		listeOutils.put(0, new List(ihmUtil));
 		listeOutils.put(1, new ListCategorie(ihmUtil));
 		listeOutils.put(2, new ListCher(ihmUtil));

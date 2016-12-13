@@ -22,9 +22,11 @@ public class ClientDaoJpa implements ClientDao {
 
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
+	private boolean connected;
 
 	public ClientDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+		setConnected(false);
 		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria-console-client"));
 	}
 
@@ -57,6 +59,7 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
+
 	public void inscription(Client client) throws ClientException {
 		execute((EntityManager entity) -> {
 			getEntityManager().getTransaction().begin();
@@ -67,13 +70,13 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
-	public List<Pizza> Commander() throws ClientException {
-		return null;
+	public void connection(String mail, String mdp) throws ClientException {
+		setConnected(true);
 	}
 
 	@Override
-	public void connection(String mail, String mdp) throws ClientException {
-
+	public List<Pizza> commander() throws ClientException {
+		return null;
 	}
 
 	@Override
@@ -85,9 +88,17 @@ public class ClientDaoJpa implements ClientDao {
 	public void quitApp() throws ClientException {
 		if (this.getEntityManagerFactory() != null) {
 			this.getEntityManagerFactory().close();
-		} else {
-			System.out.println("null");
 		}
+	}
+
+	@Override
+	public boolean estConnecte() throws ClientException {
+		return isConnected();
+	}
+
+	@Override
+	public void deconnection() throws ClientException {
+		setConnected(false);
 	}
 
 	public EntityManagerFactory getEntityManagerFactory() {
@@ -104,6 +115,14 @@ public class ClientDaoJpa implements ClientDao {
 
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	public boolean isConnected() {
+		return connected;
+	}
+
+	public void setConnected(boolean connected) {
+		this.connected = connected;
 	}
 
 }

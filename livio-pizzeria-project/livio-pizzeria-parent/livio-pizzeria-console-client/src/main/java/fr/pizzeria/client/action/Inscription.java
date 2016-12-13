@@ -1,15 +1,14 @@
 package fr.pizzeria.client.action;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.pizzeria.client.ihm.IhmUtil;
 import fr.pizzeria.dao.exception.ClientException;
-import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.model.Client;
 
 /**
@@ -33,7 +32,7 @@ public class Inscription extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() throws ClientException {
 		Logger.getLogger(Inscription.class.getName()).info("Entrez votre nom: \n");
 		String nom = this.ihmUtil.getScanner().next();
 
@@ -43,7 +42,7 @@ public class Inscription extends MenuInterface {
 		Logger.getLogger(Inscription.class.getName()).info("Entrez votre adresse: \n");
 		String adresse = this.ihmUtil.getScanner().next();
 
-		String email = null;
+		String email;
 		do {
 			Logger.getLogger(Inscription.class.getName()).info("Entrez votre email: \n");
 			email = this.ihmUtil.getScanner().next();
@@ -51,15 +50,17 @@ public class Inscription extends MenuInterface {
 
 		Logger.getLogger(Inscription.class.getName()).info("Entrez votre mot de passe: \n");
 		String motDePasse = this.ihmUtil.getScanner().next();
+
+		byte[] md5sum;
 		try {
-			MessageDigest mdp = MessageDigest.getInstance("MD5", motDePasse);
+			md5sum = MessageDigest.getInstance("SHA1").digest(motDePasse.getBytes());
 		} catch (NoSuchAlgorithmException e) {
 			throw new ClientException(e);
-		} catch (NoSuchProviderException e) {
-			throw new ClientException(e);
 		}
-		this.getIhmUtil().getClientDao().inscription(new Client(nom, prenom, adresse, email, motDePasse));
 
+		String motDePasseHash = String.format("%032X", new BigInteger(1, md5sum));
+
+		this.getIhmUtil().getClientDao().inscription(new Client(nom, prenom, adresse, email, motDePasseHash));
 	}
 
 	@Override

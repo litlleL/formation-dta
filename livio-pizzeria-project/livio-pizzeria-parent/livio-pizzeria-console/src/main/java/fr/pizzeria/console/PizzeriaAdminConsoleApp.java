@@ -6,7 +6,7 @@ import java.util.Scanner;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 import fr.pizzeria.ihm.IhmUtil;
-import fr.pizzeria.ihm.Menu;
+import fr.pizzeria.ihm.MenuAdmin;
 
 /**
  * 
@@ -37,7 +37,7 @@ public class PizzeriaAdminConsoleApp {
 		}
 
 		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory);
-		Menu menu = new Menu(ihmUtil);
+		MenuAdmin menu = new MenuAdmin(ihmUtil);
 		menu.start();
 	}
 }

@@ -28,7 +28,11 @@ public class Exit extends MenuInterface {
 
 	@Override
 	public void executeAction() {
-		Logger.getLogger(Exit.class.getName()).info("Au revoir ^^'");
+		if (this.getIhmUtil().getClientDao().estConnecte()) {
+			this.getIhmUtil().getClientDao().deconnection();
+		} else {
+			Logger.getLogger(Exit.class.getName()).info("Au revoir ^^'");
+		}
 	}
 
 	@Override

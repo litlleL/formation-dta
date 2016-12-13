@@ -1,5 +1,6 @@
 package fr.pizzeria.client.action;
 
+import fr.pizzeria.client.ihm.IhmUtil;
 import fr.pizzeria.dao.exception.PizzaException;
 
 /**
@@ -11,15 +12,17 @@ import fr.pizzeria.dao.exception.PizzaException;
  */
 public class ListerCommande extends MenuInterface {
 
+	public ListerCommande(IhmUtil ihmUtil) {
+
+	}
+
 	@Override
 	public void executeAction() throws PizzaException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
 
 	}
 

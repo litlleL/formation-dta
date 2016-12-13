@@ -27,7 +27,7 @@ public class Connection extends MenuInterface {
 
 	@Override
 	public void executeAction() throws PizzaException {
-
+		this.ihmUtil.getClientDao().connection("sdfsdf", "sdfsdf");
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import fr.pizzeria.client.ihm.IhmUtil;
-import fr.pizzeria.client.ihm.Menu;
+import fr.pizzeria.client.ihm.MenuClient;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.dao.service.client.ClientDaoFactory;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
@@ -41,7 +41,7 @@ public class PizzeriaClientConsoleApp {
 		}
 
 		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory, clientFactory);
-		Menu menu = new Menu(ihmUtil);
+		MenuClient menu = new MenuClient(ihmUtil);
 		menu.start();
 	}
 }

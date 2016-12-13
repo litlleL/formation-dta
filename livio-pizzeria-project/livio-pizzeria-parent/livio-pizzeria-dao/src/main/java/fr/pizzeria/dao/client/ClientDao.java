@@ -27,14 +27,20 @@ public interface ClientDao {
 	 * @param mdp
 	 * @throws ClientException
 	 */
-	void connection(String nom, String mdp) throws ClientException;
+	void connection(String email, String mdp) throws ClientException;
+
+	/**
+	 * 
+	 * @throws ClientException
+	 */
+	void deconnection() throws ClientException;
 
 	/**
 	 * 
 	 * @return
 	 * @throws ClientException
 	 */
-	List<Pizza> Commander() throws ClientException;
+	List<Pizza> commander() throws ClientException;
 
 	/**
 	 * 
@@ -45,5 +51,12 @@ public interface ClientDao {
 	default void quitApp() throws ClientException {
 		throw new ClientException("Not implemented");
 	}
+
+	/**
+	 * 
+	 * @return
+	 * @throws ClientException
+	 */
+	boolean estConnecte() throws ClientException;
 
 }
