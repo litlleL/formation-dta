@@ -27,7 +27,7 @@ public interface ClientDao {
 	 * @param mdp
 	 * @throws ClientException
 	 */
-	void connection(String email, String mdp) throws ClientException;
+	boolean connection(String email, String mdp) throws ClientException;
 
 	/**
 	 * 

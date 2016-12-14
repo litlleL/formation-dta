@@ -33,6 +33,8 @@ public class Inscription extends MenuInterface {
 
 	@Override
 	public void executeAction() throws ClientException {
+
+		Logger.getLogger(Inscription.class.getName()).info("---------- Inscription ---------- \n");
 		Logger.getLogger(Inscription.class.getName()).info("Entrez votre nom: \n");
 		String nom = this.ihmUtil.getScanner().next();
 

@@ -27,6 +27,10 @@ public class Client extends AbstractPerson {
 	@OneToMany(mappedBy = "clientId")
 	List<Commande> commande;
 
+	public Client() {
+
+	}
+
 	/**
 	 * 
 	 * @param nom

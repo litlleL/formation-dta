@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import fr.pizzeria.dao.exception.ClientException;
 import fr.pizzeria.model.Client;
@@ -44,6 +45,7 @@ public class ClientDaoJpa implements ClientDao {
 		try {
 			setEntityManager(getEntityManagerFactory().createEntityManager());
 
+			getEntityManager().getTransaction().begin();
 			return run.exec(entityManager);
 
 		} catch (Exception e) {
@@ -59,7 +61,6 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
-
 	public void inscription(Client client) throws ClientException {
 		execute((EntityManager entity) -> {
 			getEntityManager().getTransaction().begin();
@@ -70,8 +71,19 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
-	public void connection(String mail, String mdp) throws ClientException {
-		setConnected(true);
+	public boolean connection(String mail, String mdp) throws ClientException {
+		return execute((EntityManager entity) -> {
+			TypedQuery<Client> clientQuery = getEntityManager().createQuery(
+					"select p from Client p where p.email ='" + mail + "' and p.motDePasse ='" + mdp + "'",
+					Client.class);
+			if (clientQuery.getResultList().isEmpty()) {
+				setConnected(false);
+				return false;
+			} else {
+				setConnected(true);
+				return true;
+			}
+		});
 	}
 
 	@Override
