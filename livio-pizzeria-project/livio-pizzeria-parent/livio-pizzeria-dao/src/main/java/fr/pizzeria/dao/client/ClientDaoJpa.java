@@ -1,6 +1,6 @@
 package fr.pizzeria.dao.client;
 
-import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
@@ -45,7 +45,6 @@ public class ClientDaoJpa implements ClientDao {
 		try {
 			setEntityManager(getEntityManagerFactory().createEntityManager());
 
-			getEntityManager().getTransaction().begin();
 			return run.exec(entityManager);
 
 		} catch (Exception e) {
@@ -87,8 +86,12 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
-	public List<Pizza> commander() throws ClientException {
-		return null;
+	public boolean commander(Map<Integer, Pizza> commande) throws ClientException {
+		commande.forEach((k, v) -> System.out.println(k + " " + v));
+		return execute((EntityManager entity) -> {
+
+			return false;
+		});
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package fr.pizzeria.dao.client;
 
-import java.util.List;
+import java.util.Map;
 
 import fr.pizzeria.dao.exception.ClientException;
 import fr.pizzeria.model.Client;
@@ -40,7 +40,7 @@ public interface ClientDao {
 	 * @return
 	 * @throws ClientException
 	 */
-	List<Pizza> commander() throws ClientException;
+	boolean commander(Map<Integer, Pizza> commande) throws ClientException;
 
 	/**
 	 * 
