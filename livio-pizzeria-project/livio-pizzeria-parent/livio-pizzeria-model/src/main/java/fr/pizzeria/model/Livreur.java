@@ -1,10 +1,7 @@
 package fr.pizzeria.model;
 
-import java.util.List;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import fr.pizzeria.model.utils.AbstractPerson;
 
@@ -18,9 +15,6 @@ import fr.pizzeria.model.utils.AbstractPerson;
 @Entity
 @DiscriminatorValue("Livreur")
 public class Livreur extends AbstractPerson {
-
-	@OneToMany(mappedBy = "livreurId")
-	List<Commande> commande;
 
 	private Livreur() {
 		super();

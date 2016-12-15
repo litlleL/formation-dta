@@ -9,6 +9,7 @@ import fr.pizzeria.client.action.Commander;
 import fr.pizzeria.client.action.Connection;
 import fr.pizzeria.client.action.Exit;
 import fr.pizzeria.client.action.Inscription;
+import fr.pizzeria.client.action.ListStatut;
 import fr.pizzeria.client.action.ListerCommande;
 import fr.pizzeria.client.action.MenuInterface;
 
@@ -46,7 +47,8 @@ public class MenuClient {
 		} else {
 			listeOutils.put(0, new Commander(reader));
 			listeOutils.put(1, new ListerCommande(reader));
-			listeOutils.put(2, new Exit(reader));
+			listeOutils.put(2, new ListStatut(reader));
+			listeOutils.put(3, new Exit(reader));
 		}
 	}
 
@@ -57,20 +59,25 @@ public class MenuClient {
 	private void executeAction() {
 
 		Logger.getLogger(Menu.class.getName()).info("Faites un choix  \n\n");
-
 		String value = reader.getScanner().next();
+		if (!this.reader.getClientDao().estConnecte()) {
 
-		if (Integer.parseInt(value) < 3) {
-			listeOutils.get(Integer.parseInt(value) - 1).executeAction();
-			start();
-		} else if (Integer.parseInt(value) >= 3) {
-			if (this.reader.getClientDao().estConnecte()) {
-				listeOutils.get(listeOutils.size() - 1).executeAction();
+			if (Integer.parseInt(value) < 3) {
+				listeOutils.get(Integer.parseInt(value) - 1).executeAction();
 				start();
-			} else {
+			} else if (Integer.parseInt(value) >= 3) {
 				this.reader.getClientDao().quitApp();
 				this.reader.getPizzaDao().quitApp();
 				return;
+			}
+		} else {
+
+			if (Integer.parseInt(value) < 4) {
+				listeOutils.get(Integer.parseInt(value) - 1).executeAction();
+				start();
+			} else if (Integer.parseInt(value) >= 4) {
+				listeOutils.get(listeOutils.size() - 1).executeAction();
+				start();
 			}
 		}
 

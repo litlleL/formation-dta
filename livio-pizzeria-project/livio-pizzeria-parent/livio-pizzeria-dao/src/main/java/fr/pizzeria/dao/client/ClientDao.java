@@ -1,9 +1,11 @@
 package fr.pizzeria.dao.client;
 
+import java.util.List;
 import java.util.Map;
 
 import fr.pizzeria.dao.exception.ClientException;
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -46,7 +48,7 @@ public interface ClientDao {
 	 * 
 	 * @throws ClientException
 	 */
-	void listerCommande() throws ClientException;
+	List<Commande> listerCommande() throws ClientException;
 
 	default void quitApp() throws ClientException {
 		throw new ClientException("Not implemented");

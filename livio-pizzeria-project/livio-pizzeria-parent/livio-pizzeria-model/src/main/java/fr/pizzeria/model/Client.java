@@ -1,10 +1,7 @@
 package fr.pizzeria.model;
 
-import java.util.List;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import fr.pizzeria.model.utils.AbstractPerson;
 
@@ -23,9 +20,6 @@ public class Client extends AbstractPerson {
 	private String adresse;
 	private String email;
 	private String motDePasse;
-
-	@OneToMany(mappedBy = "clientId")
-	List<Commande> commande;
 
 	public Client() {
 		super();

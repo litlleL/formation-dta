@@ -3,7 +3,7 @@ package fr.pizzeria.client.action;
 import java.util.logging.Logger;
 
 import fr.pizzeria.client.ihm.IhmUtil;
-import fr.pizzeria.dao.exception.PizzaException;
+import fr.pizzeria.dao.exception.ClientException;
 
 /**
  * 
@@ -26,7 +26,10 @@ public class ListerCommande extends MenuInterface {
 	}
 
 	@Override
-	public void executeAction() throws PizzaException {
+	public void executeAction() throws ClientException {
+		Logger.getLogger(ListerCommande.class.getName()).info("------------------ Commande passée :\n\n");
+
+		this.getIhmUtil().getClientDao().listerCommande().forEach(System.out::println);
 
 	}
 
