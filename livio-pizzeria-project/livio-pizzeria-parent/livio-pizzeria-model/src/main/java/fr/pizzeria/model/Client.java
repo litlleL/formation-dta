@@ -28,7 +28,7 @@ public class Client extends AbstractPerson {
 	List<Commande> commande;
 
 	public Client() {
-
+		super();
 	}
 
 	/**

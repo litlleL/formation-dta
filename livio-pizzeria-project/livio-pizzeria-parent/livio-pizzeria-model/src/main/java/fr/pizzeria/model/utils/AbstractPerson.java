@@ -19,10 +19,29 @@ public class AbstractPerson {
 	private String nom;
 	private String prenom;
 
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getNom() {
 		return nom;
 	}
 
+	/**
+	 * 
+	 * @param nom
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -31,6 +50,10 @@ public class AbstractPerson {
 		return prenom;
 	}
 
+	/**
+	 * 
+	 * @param prenom
+	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}

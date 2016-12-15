@@ -1,6 +1,6 @@
 package fr.pizzeria.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -57,7 +57,7 @@ public class Commande {
 	@JoinColumn(name = "livreurId")
 	private AbstractPerson livreurId;
 
-	private Commande() {
+	public Commande(Date date, Statut nonTraitee, int clientId2) {
 		super();
 	}
 

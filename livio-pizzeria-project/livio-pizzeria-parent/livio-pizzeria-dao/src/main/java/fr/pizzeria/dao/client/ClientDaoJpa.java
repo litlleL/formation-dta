@@ -1,5 +1,6 @@
 package fr.pizzeria.dao.client;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -9,8 +10,11 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.dao.exception.ClientException;
+import fr.pizzeria.enumeration.Statut;
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.utils.AbstractPerson;
 
 /**
  * 
@@ -24,6 +28,8 @@ public class ClientDaoJpa implements ClientDao {
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private boolean connected;
+	private String clientName;
+	private int clientId;
 
 	public ClientDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -72,10 +78,12 @@ public class ClientDaoJpa implements ClientDao {
 	@Override
 	public boolean connection(String mail, String mdp) throws ClientException {
 		return execute((EntityManager entity) -> {
-			TypedQuery<Client> clientQuery = getEntityManager().createQuery(
+			TypedQuery<AbstractPerson> clientQuery = getEntityManager().createQuery(
 					"select p from Client p where p.email ='" + mail + "' and p.motDePasse ='" + mdp + "'",
-					Client.class);
+					AbstractPerson.class);
 			if (clientQuery.getResultList().isEmpty()) {
+				setClientId(clientQuery.getResultList().get(0).getId());
+				setClientName(clientQuery.getResultList().get(0).getNom());
 				setConnected(false);
 				return false;
 			} else {
@@ -87,7 +95,12 @@ public class ClientDaoJpa implements ClientDao {
 
 	@Override
 	public boolean commander(Map<Integer, Pizza> commande) throws ClientException {
-		commande.forEach((k, v) -> System.out.println(k + " " + v));
+		commande.forEach((k, v) -> {
+			for (int i = 0; i < k; i++) {
+				System.out.println(new Date());
+				Commande commandeToInsert = new Commande(new Date(), Statut.NON_TRAITEE, getClientId());
+			}
+		});
 		return execute((EntityManager entity) -> {
 
 			return false;
@@ -113,6 +126,8 @@ public class ClientDaoJpa implements ClientDao {
 
 	@Override
 	public void deconnection() throws ClientException {
+		setClientId(0);
+		setClientName(null);
 		setConnected(false);
 	}
 
@@ -138,6 +153,22 @@ public class ClientDaoJpa implements ClientDao {
 
 	public void setConnected(boolean connected) {
 		this.connected = connected;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public int getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(int clientId) {
+		this.clientId = clientId;
 	}
 
 }
