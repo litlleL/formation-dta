@@ -1,6 +1,7 @@
 package fr.pizzeria.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,8 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import fr.pizzeria.enumeration.Statut;
 import fr.pizzeria.model.utils.AbstractPerson;
@@ -42,17 +44,26 @@ public class Commande {
 	@JoinColumn(name = "livreurId")
 	private AbstractPerson livreurId;
 
-	private int quantite;
-	@OneToOne
-	private Pizza pizzaId;
+	@ManyToMany
+	@JoinTable(name = "commandePizza",
 
-	public Commande(Date date, Integer quantite, Statut nonTraitee, AbstractPerson abstractPerson, Pizza pizza) {
+			joinColumns =
+
+			@JoinColumn(name = "commandeid", referencedColumnName = "id"),
+
+			inverseJoinColumns =
+
+			@JoinColumn(name = "pizzaid", referencedColumnName = "id")
+
+	)
+	private Set<Pizza> pizzaId;
+
+	public Commande(Date date, Statut nonTraitee, AbstractPerson abstractPerson, Set<Pizza> pizza) {
 		super();
 		setDate(date);
-		setQuantite(quantite);
 		setStatut(nonTraitee);
 		setClientId(abstractPerson);
-		setPizzaId(pizza);
+		this.pizzaId = pizza;
 	}
 
 	public Date getDate() {
@@ -85,22 +96,6 @@ public class Commande {
 
 	public void setLivreurId(AbstractPerson livreurId) {
 		this.livreurId = livreurId;
-	}
-
-	public Pizza getPizzaId() {
-		return pizzaId;
-	}
-
-	public void setPizzaId(Pizza pizzaId) {
-		this.pizzaId = pizzaId;
-	}
-
-	public int getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
 	}
 
 	@Override

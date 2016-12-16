@@ -3,6 +3,7 @@ package fr.pizzeria.dao.client;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
@@ -103,15 +104,15 @@ public class ClientDaoJpa implements ClientDao {
 		return execute((EntityManager entity) -> {
 			TypedQuery<AbstractPerson> clientQuery = getEntityManager()
 					.createQuery("select p from Client p where p.id ='" + getClientId() + "'", AbstractPerson.class);
-
+			Set<Pizza> pizzas = null;
 			commande.forEach((quantite, pizza) -> {
-				Commande commandeClient = new Commande(new Date(), quantite, Statut.NON_TRAITEE,
-						clientQuery.getResultList().get(0), pizza);
-				getEntityManager().getTransaction().begin();
-				getEntityManager().persist(commandeClient);
-				getEntityManager().getTransaction().commit();
+				pizzas.add(pizza);
 			});
-
+			Commande commandeClient = new Commande(new Date(), Statut.NON_TRAITEE, clientQuery.getResultList().get(0),
+					pizzas);
+			getEntityManager().getTransaction().begin();
+			getEntityManager().persist(commandeClient);
+			getEntityManager().getTransaction().commit();
 			return true;
 
 		});

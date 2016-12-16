@@ -129,7 +129,7 @@
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
 				<persitence.unit.client>livio-pizzeria-console-client</persitence.unit.client>
-				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria4</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 				<jdbc.user>root</jdbc.user>
 				<jdbc.pass></jdbc.pass>
