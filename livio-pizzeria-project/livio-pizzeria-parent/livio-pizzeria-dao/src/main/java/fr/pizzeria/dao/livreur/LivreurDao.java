@@ -2,7 +2,6 @@ package fr.pizzeria.dao.livreur;
 
 import java.util.List;
 
-import fr.pizzeria.dao.exception.ClientException;
 import fr.pizzeria.dao.exception.LivreurException;
 import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
@@ -62,6 +61,13 @@ public interface LivreurDao {
 	 * @throws LivreurException
 	 */
 	default void quitApp() throws LivreurException {
-		throw new ClientException("Not implemented");
+		throw new LivreurException("Not implemented");
 	}
+
+	/**
+	 * 
+	 * @param id
+	 * @throws LivreurException
+	 */
+	void SuppressionLivreur(int id) throws LivreurException;
 }

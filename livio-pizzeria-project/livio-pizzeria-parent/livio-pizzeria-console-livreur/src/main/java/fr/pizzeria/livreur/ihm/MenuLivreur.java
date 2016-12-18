@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import fr.pizzeria.livreur.action.Connection;
 import fr.pizzeria.livreur.action.Exit;
 import fr.pizzeria.livreur.action.GererCommande;
-import fr.pizzeria.livreur.action.Inscription;
 import fr.pizzeria.livreur.action.ListerCommande;
 import fr.pizzeria.livreur.action.MenuInterface;
 
@@ -31,9 +30,8 @@ public class MenuLivreur {
 	public MenuLivreur(IhmUtil ihmUtil) {
 		this.reader = ihmUtil;
 		if (!this.reader.getLivreurDao().estConnecte()) {
-			listeOutils.put(0, new Inscription(ihmUtil));
-			listeOutils.put(1, new Connection(ihmUtil));
-			listeOutils.put(2, new Exit(ihmUtil));
+			listeOutils.put(0, new Connection(ihmUtil));
+			listeOutils.put(1, new Exit(ihmUtil));
 		} else {
 			listeOutils.put(0, new ListerCommande(ihmUtil));
 			listeOutils.put(1, new GererCommande(ihmUtil));
@@ -56,10 +54,10 @@ public class MenuLivreur {
 		String value = reader.getScanner().next();
 		if (!this.getReader().getClientDao().estConnecte()) {
 
-			if (Integer.parseInt(value) < 3) {
+			if (Integer.parseInt(value) < 2) {
 				listeOutils.get(Integer.parseInt(value) - 1).executeAction();
 				start();
-			} else if (Integer.parseInt(value) >= 3) {
+			} else if (Integer.parseInt(value) >= 2) {
 				this.getReader().getClientDao().quitApp();
 				this.getReader().getPizzaDao().quitApp();
 				this.getReader().getLivreurDao().quitApp();

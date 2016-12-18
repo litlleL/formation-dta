@@ -3,8 +3,10 @@ package fr.pizzeria.ihm;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.pizzeria.action.AddNewLivreur;
 import fr.pizzeria.action.Create;
 import fr.pizzeria.action.Delete;
+import fr.pizzeria.action.DeleteLivreur;
 import fr.pizzeria.action.Exit;
 import fr.pizzeria.action.InsertQuick;
 import fr.pizzeria.action.List;
@@ -37,7 +39,9 @@ public class MenuAdmin {
 		listeOutils.put(4, new Update(ihmUtil));
 		listeOutils.put(5, new Delete(ihmUtil));
 		listeOutils.put(6, new InsertQuick(ihmUtil));
-		listeOutils.put(7, new Exit(ihmUtil));
+		listeOutils.put(7, new AddNewLivreur(ihmUtil));
+		listeOutils.put(8, new DeleteLivreur(ihmUtil));
+		listeOutils.put(9, new Exit(ihmUtil));
 		this.reader = ihmUtil;
 	}
 
@@ -56,15 +60,24 @@ public class MenuAdmin {
 
 		String value = reader.getScanner().next();
 
-		if (Integer.parseInt(value) < 8) {
+		if (Integer.parseInt(value) < 10) {
 			listeOutils.get(Integer.parseInt(value) - 1).executeAction();
 			start();
-		} else if (Integer.parseInt(value) >= 8) {
+		} else if (Integer.parseInt(value) >= 10) {
 			listeOutils.get(listeOutils.size() - 1).executeAction();
-			this.reader.getPizzaDao().quitApp();
+			this.getReader().getPizzaDao().quitApp();
+			this.getReader().getLivreurDao().quitApp();
 			return;
 		}
 
+	}
+
+	public IhmUtil getReader() {
+		return reader;
+	}
+
+	public void setReader(IhmUtil reader) {
+		this.reader = reader;
 	}
 
 }

@@ -116,6 +116,7 @@
 			<id>jpa</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
+				<livreur.impl>fr.pizzeria.dao.service.livreur.LivreurDaoFactoryJpa</livreur.impl>
 				<persitence.unit>livio-pizzeria</persitence.unit>
 				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>

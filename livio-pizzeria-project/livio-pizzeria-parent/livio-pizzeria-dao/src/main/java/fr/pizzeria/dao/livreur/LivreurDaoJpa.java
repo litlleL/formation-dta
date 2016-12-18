@@ -103,6 +103,18 @@ public class LivreurDaoJpa implements LivreurDao {
 		setConnected(false);
 	}
 
+	@Override
+	public void SuppressionLivreur(int id) throws LivreurException {
+		// re
+	}
+
+	@Override
+	public void quitApp() throws LivreurException {
+		if (this.getEntityManagerFactory() != null) {
+			this.getEntityManagerFactory().close();
+		}
+	}
+
 	public EntityManagerFactory getEntityManagerFactory() {
 		return entityManagerFactory;
 	}
