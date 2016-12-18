@@ -117,6 +117,7 @@
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<livreur.impl>fr.pizzeria.dao.service.livreur.LivreurDaoFactoryJpa</livreur.impl>
+				<commande.impl>fr.pizzeria.dao.service.commande.CommandeDaoFactoryJpa</commande.impl>
 				<persitence.unit>livio-pizzeria</persitence.unit>
 				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria2</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
@@ -130,6 +131,7 @@
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
+				<commande.impl>fr.pizzeria.dao.service.commande.CommandeDaoFactoryJpa</commande.impl>
 				<persitence.unit>livio-pizzeria</persitence.unit>
 				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria4</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
@@ -144,6 +146,7 @@
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
 				<livreur.impl>fr.pizzeria.dao.service.livreur.LivreurDaoFactoryJpa</livreur.impl>
+				<commande.impl>fr.pizzeria.dao.service.commande.CommandeDaoFactoryJpa</commande.impl>
 				<persitence.unit>livio-pizzeria</persitence.unit>
 				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria4</jdbc.url>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>

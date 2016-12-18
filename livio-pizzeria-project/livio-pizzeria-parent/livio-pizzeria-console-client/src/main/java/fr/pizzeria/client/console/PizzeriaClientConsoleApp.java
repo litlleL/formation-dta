@@ -7,6 +7,7 @@ import fr.pizzeria.client.ihm.IhmUtil;
 import fr.pizzeria.client.ihm.MenuClient;
 import fr.pizzeria.dao.exception.PizzaException;
 import fr.pizzeria.dao.service.client.ClientDaoFactory;
+import fr.pizzeria.dao.service.commande.CommandeDaoFactory;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 
 /**
@@ -30,17 +31,20 @@ public class PizzeriaClientConsoleApp {
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String daoImpl = bundle.getString("dao.impl");
 		String clientImpl = bundle.getString("client.impl");
+		String commandeImpl = bundle.getString("commande.impl");
 
 		PizzaDaoFactory daoFactory = null;
 		ClientDaoFactory clientFactory = null;
+		CommandeDaoFactory commandeDaoFactory = null;
 		try {
 			daoFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
 			clientFactory = (ClientDaoFactory) Class.forName(clientImpl).newInstance();
+			commandeDaoFactory = (CommandeDaoFactory) Class.forName(commandeImpl).newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			throw new PizzaException(e);
 		}
 
-		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory, clientFactory);
+		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), daoFactory, clientFactory, commandeDaoFactory);
 		MenuClient menu = new MenuClient(ihmUtil);
 		menu.start();
 	}

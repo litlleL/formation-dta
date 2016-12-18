@@ -1,9 +1,5 @@
 package fr.pizzeria.dao.client;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
@@ -12,10 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.dao.exception.ClientException;
-import fr.pizzeria.enumeration.Statut;
 import fr.pizzeria.model.Client;
-import fr.pizzeria.model.Commande;
-import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.utils.AbstractPerson;
 
 /**
@@ -30,7 +23,6 @@ public class ClientDaoJpa implements ClientDao {
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private boolean connected;
-	private int clientId;
 
 	public ClientDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -82,57 +74,19 @@ public class ClientDaoJpa implements ClientDao {
 	}
 
 	@Override
-	public boolean connection(String mail, String mdp) throws ClientException {
+	public int connection(String mail, String mdp) throws ClientException {
 		return execute((EntityManager entity) -> {
 			TypedQuery<AbstractPerson> clientQuery = getEntityManager().createQuery(
 					"select p from Client p where p.email ='" + mail + "' and p.motDePasse ='" + mdp + "'",
 					AbstractPerson.class);
 			if (clientQuery.getResultList().isEmpty()) {
 				setConnected(false);
-				return false;
+				return 0;
 			} else {
-				setClientId(clientQuery.getResultList().get(0).getId());
 				setConnected(true);
-				return true;
+				return clientQuery.getResultList().get(0).getId();
 			}
 		});
-	}
-
-	@Override
-	public boolean commander(Map<Integer, Pizza> commande) throws ClientException {
-
-		execute((EntityManager entity) -> {
-			TypedQuery<AbstractPerson> clientQuery = getEntityManager()
-					.createQuery("select p from Client p where p.id ='" + getClientId() + "'", AbstractPerson.class);
-			Commande commandes = new Commande();
-			List<Pizza> pizzas = new ArrayList<>();
-			commande.forEach((k, v) -> {
-				for (int i = 0; i < k; i++) {
-					pizzas.add(v);
-				}
-				commandes.setClientId(clientQuery.getResultList().get(0));
-				commandes.setDate(new Date());
-				commandes.setStatut(Statut.NON_TRAITEE);
-				commandes.setPizzas(pizzas);
-				getEntityManager().getTransaction().begin();
-				getEntityManager().persist(commandes);
-				getEntityManager().getTransaction().commit();
-			});
-			return true;
-		});
-
-		return true;
-	}
-
-	@Override
-	public List<Commande> listerCommande() throws ClientException {
-		return execute((EntityManager entity) -> {
-			TypedQuery<Commande> commandeQuery = getEntityManager()
-					.createQuery("select c from Commande c where c.clientId ='" + getClientId() + "'", Commande.class);
-
-			return commandeQuery.getResultList();
-		});
-
 	}
 
 	@Override
@@ -149,7 +103,6 @@ public class ClientDaoJpa implements ClientDao {
 
 	@Override
 	public void deconnection() throws ClientException {
-		setClientId(0);
 		setConnected(false);
 	}
 
@@ -175,14 +128,6 @@ public class ClientDaoJpa implements ClientDao {
 
 	public void setConnected(boolean connected) {
 		this.connected = connected;
-	}
-
-	public int getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
 	}
 
 }

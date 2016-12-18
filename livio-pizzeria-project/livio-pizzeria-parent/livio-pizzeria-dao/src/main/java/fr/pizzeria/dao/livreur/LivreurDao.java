@@ -1,9 +1,6 @@
 package fr.pizzeria.dao.livreur;
 
-import java.util.List;
-
 import fr.pizzeria.dao.exception.LivreurException;
-import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 
 /**
@@ -27,21 +24,7 @@ public interface LivreurDao {
 	 * @param mdp
 	 * @throws LivreurException
 	 */
-	void connection(String email, String mdp) throws LivreurException;
-
-	/**
-	 * 
-	 * @return
-	 * @throws LivreurException
-	 */
-	List<Commande> listerCommande() throws LivreurException;
-
-	/**
-	 * 
-	 * @param id
-	 * @throws LivreurException
-	 */
-	void gererCommande(int id) throws LivreurException;
+	int connection(String email, String mdp) throws LivreurException;
 
 	/**
 	 * 

@@ -1,6 +1,5 @@
 package fr.pizzeria.dao.livreur;
 
-import java.util.List;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
@@ -9,7 +8,6 @@ import javax.persistence.Persistence;
 
 import fr.pizzeria.dao.exception.ClientException;
 import fr.pizzeria.dao.exception.LivreurException;
-import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.Livreur;
 
 /**
@@ -26,7 +24,6 @@ public class LivreurDaoJpa implements LivreurDao {
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private boolean connected;
-	private int livreurId;
 
 	public LivreurDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -74,22 +71,10 @@ public class LivreurDaoJpa implements LivreurDao {
 	}
 
 	@Override
-	public void connection(String email, String mdp) throws LivreurException {
+	public int connection(String email, String mdp) throws LivreurException {
+		return 0;
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public List<Commande> listerCommande() throws LivreurException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void gererCommande(int id) throws LivreurException {
-		if (this.getEntityManagerFactory() != null) {
-			this.getEntityManagerFactory().close();
-		}
 	}
 
 	@Override
@@ -99,7 +84,6 @@ public class LivreurDaoJpa implements LivreurDao {
 
 	@Override
 	public void deconnection() throws LivreurException {
-		setLivreurId(0);
 		setConnected(false);
 	}
 
@@ -137,14 +121,6 @@ public class LivreurDaoJpa implements LivreurDao {
 
 	public void setConnected(boolean connected) {
 		this.connected = connected;
-	}
-
-	public int getLivreurId() {
-		return livreurId;
-	}
-
-	public void setLivreurId(int livreurId) {
-		this.livreurId = livreurId;
 	}
 
 }

@@ -53,7 +53,9 @@ public class Connection extends MenuInterface {
 
 		String motDePasseHash = String.format("%032X", new BigInteger(1, md5sum));
 
-		if (this.ihmUtil.getClientDao().connection(email, motDePasseHash)) {
+		int clientId = this.ihmUtil.getClientDao().connection(email, motDePasseHash);
+		if (clientId > 0) {
+			this.getIhmUtil().getCommandeDao().setSession(clientId);
 			Logger.getLogger(Connection.class.getName()).info("---------- Bienvenue ----------- \n");
 		} else {
 			Logger.getLogger(Connection.class.getName())

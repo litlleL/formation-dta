@@ -3,8 +3,10 @@ package fr.pizzeria.client.ihm;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.client.ClientDao;
+import fr.pizzeria.dao.commande.CommandeDao;
 import fr.pizzeria.dao.pizza.PizzaDao;
 import fr.pizzeria.dao.service.client.ClientDaoFactory;
+import fr.pizzeria.dao.service.commande.CommandeDaoFactory;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 
 /**
@@ -19,17 +21,22 @@ public class IhmUtil {
 
 	private PizzaDao pizzaDao;
 	private ClientDao clientDao;
+	private CommandeDao commandeDao;
 
 	/**
 	 * 
 	 * @param scanner
-	 * @param pizzaFactoryTableau
+	 * @param pizzaDao
+	 * @param clientDao
+	 * @param commandeDao
 	 */
-	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao, ClientDaoFactory clientDao) {
+	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao, ClientDaoFactory clientDao,
+			CommandeDaoFactory commandeDao) {
 		super();
 		this.scanner = scanner;
 		this.pizzaDao = pizzaDao.getPizzaDaoFactory();
 		this.clientDao = clientDao.getClientDao();
+		this.commandeDao = commandeDao.getCommandeDao();
 	}
 
 	public Scanner getScanner() {
@@ -46,6 +53,14 @@ public class IhmUtil {
 
 	public void setClientDao(ClientDao clientDao) {
 		this.clientDao = clientDao;
+	}
+
+	public CommandeDao getCommandeDao() {
+		return commandeDao;
+	}
+
+	public void setCommandeDao(CommandeDao commandeDao) {
+		this.commandeDao = commandeDao;
 	}
 
 }

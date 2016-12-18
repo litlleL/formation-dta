@@ -69,6 +69,7 @@ public class MenuClient {
 			} else if (Integer.parseInt(value) >= 3) {
 				this.reader.getClientDao().quitApp();
 				this.reader.getPizzaDao().quitApp();
+				this.reader.getCommandeDao().quitApp();
 				return;
 			}
 		} else {

@@ -33,7 +33,7 @@ public class ListStatut extends MenuInterface {
 
 	@Override
 	public void executeAction() throws PizzaException {
-		Map<Statut, List<Commande>> map = this.getIhmUtil().getClientDao().listerCommande().stream()
+		Map<Statut, List<Commande>> map = this.getIhmUtil().getCommandeDao().listerCommande().stream()
 				.collect(Collectors.groupingBy(commande -> commande.getStatut()));
 
 		map.forEach((k, v) -> {

@@ -64,7 +64,7 @@ public class Commander extends MenuInterface {
 			choix = this.getIhmUtil().getScanner().next();
 		} while (("o").equals(choix) || ("O").equals(choix));
 
-		if (this.getIhmUtil().getClientDao().commander(commande)) {
+		if (this.getIhmUtil().getCommandeDao().commander(commande)) {
 			Logger.getLogger(Commander.class.getName())
 					.info("---------- Votre commande à bien été effectuer ----------- \n");
 		} else {

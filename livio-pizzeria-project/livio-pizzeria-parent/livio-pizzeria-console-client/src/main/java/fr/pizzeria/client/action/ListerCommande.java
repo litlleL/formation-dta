@@ -29,7 +29,7 @@ public class ListerCommande extends MenuInterface {
 	public void executeAction() throws ClientException {
 		Logger.getLogger(ListerCommande.class.getName()).info("------------------ Commande passée :\n\n");
 
-		this.getIhmUtil().getClientDao().listerCommande().forEach(System.out::println);
+		this.getIhmUtil().getCommandeDao().listerCommande().forEach(System.out::println);
 	}
 
 	@Override
