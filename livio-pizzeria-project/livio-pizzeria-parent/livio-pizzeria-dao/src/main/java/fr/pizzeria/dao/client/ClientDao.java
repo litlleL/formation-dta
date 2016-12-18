@@ -25,7 +25,7 @@ public interface ClientDao {
 
 	/**
 	 * 
-	 * @param nom
+	 * @param email
 	 * @param mdp
 	 * @throws ClientException
 	 */
@@ -50,6 +50,10 @@ public interface ClientDao {
 	 */
 	List<Commande> listerCommande() throws ClientException;
 
+	/**
+	 * 
+	 * @throws ClientException
+	 */
 	default void quitApp() throws ClientException {
 		throw new ClientException("Not implemented");
 	}

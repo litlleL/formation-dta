@@ -24,7 +24,7 @@ public class PizzaDaoJpa implements PizzaDao {
 
 	public PizzaDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
-		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria-console-client"));
+		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria"));
 	}
 
 	/**

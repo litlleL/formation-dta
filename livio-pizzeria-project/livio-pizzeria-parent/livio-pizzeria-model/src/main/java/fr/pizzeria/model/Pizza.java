@@ -1,11 +1,15 @@
 package fr.pizzeria.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -26,6 +30,7 @@ public class Pizza {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
 	private String code;
 	private String nom;
@@ -35,6 +40,9 @@ public class Pizza {
 	private String urlImage;
 	@Transient
 	private static int nbPizzas;
+
+	@ManyToMany(mappedBy = "pizzas")
+	List<Commande> commandes;
 
 	public Pizza() {
 		super();

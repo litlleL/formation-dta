@@ -30,7 +30,6 @@ public class ListerCommande extends MenuInterface {
 		Logger.getLogger(ListerCommande.class.getName()).info("------------------ Commande passée :\n\n");
 
 		this.getIhmUtil().getClientDao().listerCommande().forEach(System.out::println);
-
 	}
 
 	@Override

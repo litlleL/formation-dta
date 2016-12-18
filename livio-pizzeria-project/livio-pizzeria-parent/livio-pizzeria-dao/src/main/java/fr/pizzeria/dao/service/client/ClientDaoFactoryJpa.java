@@ -5,7 +5,7 @@ import fr.pizzeria.dao.client.ClientDaoJpa;
 /**
  * 
  * @author Asdrubal Livio
- * @see ClientDaoJpa
+ * @see ClientDaoFactory
  * 
  * @since 12/12/2016
  */

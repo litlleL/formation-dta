@@ -1,8 +1,9 @@
 package fr.pizzeria.model;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,6 +31,7 @@ public class Commande {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
 	private Date date;
 	@Enumerated(EnumType.STRING)
@@ -45,25 +47,27 @@ public class Commande {
 	private AbstractPerson livreurId;
 
 	@ManyToMany
-	@JoinTable(name = "commandePizza",
+	@JoinTable(name = "commandePizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "ID"))
+	private List<Pizza> pizzas;
 
-			joinColumns =
+	public Commande() {
 
-			@JoinColumn(name = "commandeid", referencedColumnName = "id"),
+	}
 
-			inverseJoinColumns =
-
-			@JoinColumn(name = "pizzaid", referencedColumnName = "id")
-
-	)
-	private Set<Pizza> pizzaId;
-
-	public Commande(Date date, Statut nonTraitee, AbstractPerson abstractPerson, Set<Pizza> pizza) {
+	public Commande(Date date, Statut nonTraitee, AbstractPerson abstractPerson, List<Pizza> pizzas) {
 		super();
 		setDate(date);
 		setStatut(nonTraitee);
 		setClientId(abstractPerson);
-		this.pizzaId = pizza;
+		this.pizzas = pizzas;
+	}
+
+	public List<Pizza> getPizzas() {
+		return pizzas;
+	}
+
+	public void setPizzas(List<Pizza> pizzas) {
+		this.pizzas = pizzas;
 	}
 
 	public Date getDate() {

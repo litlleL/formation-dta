@@ -1,9 +1,9 @@
 package fr.pizzeria.dao.client;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
@@ -35,7 +35,7 @@ public class ClientDaoJpa implements ClientDao {
 	public ClientDaoJpa() {
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 		setConnected(false);
-		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria-console-client"));
+		this.setEntityManagerFactory(Persistence.createEntityManagerFactory("livio-pizzeria"));
 	}
 
 	/**
@@ -101,30 +101,35 @@ public class ClientDaoJpa implements ClientDao {
 	@Override
 	public boolean commander(Map<Integer, Pizza> commande) throws ClientException {
 
-		return execute((EntityManager entity) -> {
+		execute((EntityManager entity) -> {
 			TypedQuery<AbstractPerson> clientQuery = getEntityManager()
 					.createQuery("select p from Client p where p.id ='" + getClientId() + "'", AbstractPerson.class);
-			Set<Pizza> pizzas = null;
-			commande.forEach((quantite, pizza) -> {
-				pizzas.add(pizza);
+			Commande commandes = new Commande();
+			List<Pizza> pizzas = new ArrayList<>();
+			commande.forEach((k, v) -> {
+				for (int i = 0; i < k; i++) {
+					pizzas.add(v);
+				}
+				commandes.setClientId(clientQuery.getResultList().get(0));
+				commandes.setDate(new Date());
+				commandes.setStatut(Statut.NON_TRAITEE);
+				commandes.setPizzas(pizzas);
+				getEntityManager().getTransaction().begin();
+				getEntityManager().persist(commandes);
+				getEntityManager().getTransaction().commit();
 			});
-			Commande commandeClient = new Commande(new Date(), Statut.NON_TRAITEE, clientQuery.getResultList().get(0),
-					pizzas);
-			getEntityManager().getTransaction().begin();
-			getEntityManager().persist(commandeClient);
-			getEntityManager().getTransaction().commit();
 			return true;
-
 		});
+
+		return true;
 	}
 
 	@Override
 	public List<Commande> listerCommande() throws ClientException {
 		return execute((EntityManager entity) -> {
-			TypedQuery<Commande> commandeQuery = getEntityManager().createQuery("select c from Commande c",
-					Commande.class);
+			TypedQuery<Commande> commandeQuery = getEntityManager()
+					.createQuery("select c from Commande c where c.clientId ='" + getClientId() + "'", Commande.class);
 
-			commandeQuery.getResultList().forEach(System.out::println);
 			return commandeQuery.getResultList();
 		});
 

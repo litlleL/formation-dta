@@ -34,6 +34,7 @@ public class MenuClient {
 	}
 
 	public void start() {
+		listeOutils.clear();
 		getMenu();
 		showMenu();
 		executeAction();
