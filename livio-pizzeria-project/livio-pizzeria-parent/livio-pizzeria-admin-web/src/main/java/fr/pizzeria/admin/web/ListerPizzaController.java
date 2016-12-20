@@ -17,7 +17,6 @@ import fr.pizzeria.model.Pizza;
  * Servlet implementation class ListerPizzaController
  */
 public class ListerPizzaController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	private PizzaDao pizzaDao = new PizzaDaoJpa();
 
 	/**
