@@ -1,6 +1,6 @@
 <%@page import="fr.pizzeria.model.Pizza"%>
 <%@page import="java.util.List"%>
-<% List<Pizza> list = (List<Pizza>) request.getAttribute("list.pizza");
+<%   List<Pizza> list = (List<Pizza>) request.getAttribute("list.pizza");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,26 +11,44 @@
 <link href= "<%= request.getContextPath()%>/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
 <title>Liste des pizzas</title>
 </head>
-<div class="jumbotron">
-        <div class="container">
 
-
-            <div class="col-md-3">Code</div>
-            <div class="col-md-3">Nom</div>
-            <div class="col-md-3">Prix</div>
-            <div class="col-md-3">Categorie</div>
+<div class="container">
+	<div class="jumbotron">
+           <h1>Liste des pizzas</h1>
+           <p>Liste des pizzas fourni par nos service</p>
+        </div>
+    </div> 
+    
+    
+     
+<div class="container">
+ 	<div class="page-header">
+     	<h1>tableau des pizzas</h1>
+     </div>
+     <div class="row">
+     	<div class="col-md-6">
+     		<div class="col-md-2">Code</div>
+            <div class="col-md-2">Nom</div>
+            <div class="col-md-2">Prix</div>
+            <div class="col-md-2">Categorie</div>
+            <div class="col-md-2">Edition</div>
+            <div class="col-md-2">Suppression</div>
             <%
              
                 for (Pizza pizza : list) {
             %>
-            <div class="col-md-3"><%=pizza.getCode()%></div>
-            <div class="col-md-3"><%=pizza.getNom()%></div>
-            <div class="col-md-3"><%=pizza.getCode()%></div>
-            <div class="col-md-3"><%=pizza.getCode()%></div>
+            <div class="col-md-2"><%=pizza.getCode()%></div>
+            <div class="col-md-2"><%=pizza.getNom()%></div>
+            <div class="col-md-2"><%=pizza.getCode()%></div>
+            <div class="col-md-2"><%=pizza.getCode()%></div>
+            <div class="col-md-2"><%=pizza.getCode()%></div>
+            <div class="col-md-2"><%=pizza.getCode()%></div>
             <%
                 }
             %>
-        </div>
-    </div>
-	</body>
+     	</div>
+     </div>
+</div>
+	
+</body>
 </html>
