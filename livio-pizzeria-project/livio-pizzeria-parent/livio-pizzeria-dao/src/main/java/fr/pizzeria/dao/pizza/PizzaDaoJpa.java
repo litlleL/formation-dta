@@ -71,6 +71,14 @@ public class PizzaDaoJpa implements PizzaDao {
 	}
 
 	@Override
+	public Pizza findPizza(int id) throws PizzaException {
+		return execute((EntityManager entity) -> {
+			Pizza pizza = getEntityManager().find(Pizza.class, id);
+			return pizza;
+		});
+	}
+
+	@Override
 	public void save(Pizza p) throws PizzaException {
 
 		execute((EntityManager entity) -> {

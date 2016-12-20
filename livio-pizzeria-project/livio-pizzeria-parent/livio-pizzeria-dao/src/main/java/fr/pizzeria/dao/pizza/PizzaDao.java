@@ -22,6 +22,16 @@ public interface PizzaDao {
 
 	/**
 	 * 
+	 * @param id
+	 * @return
+	 * @throws PizzaException
+	 */
+	default Pizza findPizza(int id) throws PizzaException {
+		throw new PizzaException("Non Implémenter!!!");
+	}
+
+	/**
+	 * 
 	 * @param p
 	 * @throws PizzaException
 	 */
@@ -50,6 +60,10 @@ public interface PizzaDao {
 		throw new PizzaException("Pas d'implementation !!");
 	}
 
+	/**
+	 * 
+	 * @throws PizzaException
+	 */
 	default void quitApp() throws PizzaException {
 		throw new PizzaException("Pas d'implementation !!");
 	}

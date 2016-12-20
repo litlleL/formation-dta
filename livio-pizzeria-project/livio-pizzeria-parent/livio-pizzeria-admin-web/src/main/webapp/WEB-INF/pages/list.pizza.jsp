@@ -12,27 +12,25 @@
 <title>Liste des pizzas</title>
 </head>
 
- <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-wrapper">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">La florentina</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li ><a href="#">Accueil</a></li>
-            <li class="active"><a href="#Pizzas">Pizzas</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">La Florentina</a>
+            </div>
+          </div>
+        </nav>
+
       </div>
-    </nav>
+    </div>
     
 <div class="container">
 	<div class="jumbotron">
@@ -43,18 +41,22 @@
     
 <div class="container">
  	<div class="page-header">
-     	<h1>tableau des pizzas </h1>
+     	<p>
+     		<a class="btn btn-success" href="#Accueil" role="button">Accueil</a>
+     		<a class="btn btn-success" href="<%= request.getContextPath()%>/api/servlet/pizzas/new" role="button">Ajouter une pizza</a>
+     	</p>
      </div>
      <div class="table-responsive">
             <table class="table table-striped">
              <thead>
                 <tr>
-                  <th>Code</th>
-                  <th>Nom</th>
-                  <th>Prix</th>
-                  <th>Categorie</th>
-                  <th>Edition</th>
-                  <th>Suppression</th>
+                  <th class = "col-md-1">Code</th>
+                  <th class = "col-md-1">Nom</th>
+                  <th class = "col-md-1">Prix</th>
+                  <th class = "col-md-1">Categorie</th>
+                  <th class = "col-md-6">Photo</th>
+                  <th class = "col-md-1">Edition</th>
+                  <th class = "col-md-1">Suppression</th>
                 </tr>
               </thead>
               <tbody>
@@ -62,12 +64,13 @@
                 for (Pizza pizza : list) {
            		%>
 	            	<tr>
-	                  <td><%=pizza.getCode()%></td>
-	                  <td><%=pizza.getCode()%></td>
-	                  <td><%=pizza.getCode()%></td>
-	                  <td><%=pizza.getCode()%></td>
-	                  <td>Editer</td>
-	                  <td>Supprimer</td>
+	                  <td class = "col-md-2"><%=pizza.getCode()%></td>
+	                  <td class = "col-md-2"><%=pizza.getNom()%></td>
+	                  <td class = "col-md-2"><%=pizza.getPrix()%></td>
+	                  <td class = "col-md-2"><%=pizza.getCategoriePizza() %></td>
+	                  <td class = "col-md-2"><img src="<%= request.getContextPath()%>/photos/<%= pizza.getUrlImage() %>" width="200 px"/></td>
+	                  <td class = "col-md-1"><span><a class="btn btn-success" href="<%= request.getContextPath()%>/api/servlet/pizzas/edit?id=<%=pizza.getId() %>" role="button">Editer</a></span></td>
+	                  <td class = "col-md-1"><span><a class="btn btn-success" href="<%= request.getContextPath()%>/api/servlet/pizzas/delete?id=<%=pizza.getId() %>" role="button">Supprimer</a></span></td>
 	                </tr>
             <%
                 }

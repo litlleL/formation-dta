@@ -82,6 +82,14 @@ public class Pizza {
 		nbPizzas += 1;
 	}
 
+	public Pizza(String code, String nom, double prix, CategoriePizza categorie, String urlImage) {
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categoriePizza = categorie;
+		this.urlImage = urlImage;
+	}
+
 	public CategoriePizza getCategoriePizza() {
 		return categoriePizza;
 	}
