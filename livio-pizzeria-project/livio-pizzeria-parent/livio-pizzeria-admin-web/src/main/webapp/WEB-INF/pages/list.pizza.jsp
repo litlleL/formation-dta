@@ -19,11 +19,9 @@
         </div>
     </div> 
     
-    
-     
 <div class="container">
  	<div class="page-header">
-     	<h1>tableau des pizzas</h1>
+     	<h1>tableau des pizzas </h1>
      </div>
      <div class="row">
      	<div class="col-md-6">
