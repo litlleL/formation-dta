@@ -88,7 +88,16 @@
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
 				<version>7.0</version>
-				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -161,7 +170,7 @@
 				<jdbc.pass></jdbc.pass>
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>jpaw</id>
 			<properties>
@@ -176,7 +185,7 @@
 				<jdbc.pass></jdbc.pass>
 			</properties>
 		</profile>
-			
+
 	</profiles>
 
 </project>

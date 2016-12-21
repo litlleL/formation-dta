@@ -46,6 +46,14 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>livio-pizzeria-model</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

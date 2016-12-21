@@ -33,7 +33,7 @@ public class ListerPizzaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<Pizza> list = getPizzaDao().findAll();
-		request.setAttribute("list.pizza", list);
+		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pages/list.pizza.jsp");
 
 		dispatcher.forward(request, response);

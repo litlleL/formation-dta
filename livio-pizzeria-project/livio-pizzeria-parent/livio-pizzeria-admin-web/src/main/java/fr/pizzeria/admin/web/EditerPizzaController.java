@@ -33,7 +33,6 @@ public class EditerPizzaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		System.out.println(id);
 		Pizza pizza = getPizzaDao().findPizza(Integer.parseInt(id));
 		request.setAttribute("pizza", pizza);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pages/edit.pizza.jsp");
@@ -47,6 +46,7 @@ public class EditerPizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String id = request.getParameter("id");
 		String code = request.getParameter("code");
 		String nom = request.getParameter("nom");
 		double prix = Double.valueOf(request.getParameter("prix"));
@@ -55,28 +55,8 @@ public class EditerPizzaController extends HttpServlet {
 
 		Pizza pizza = new Pizza(code, nom, prix, categorie, urlImage);
 
-		System.out.println(pizza);
-		// doGet(request, response);
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
-	}
-
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String code = req.getParameter("code");
-		String nom = req.getParameter("nom");
-		double prix = Double.valueOf(req.getParameter("prix"));
-		CategoriePizza categorie = CategoriePizza.valueOf(req.getParameter("categorie"));
-		String urlImage = req.getParameter("url_image");
-
-		Pizza pizza = new Pizza(code, nom, prix, categorie, urlImage);
-
-		System.out.println(pizza);
-		super.doPut(req, resp);
+		getPizzaDao().updatePizza(Integer.parseInt(id), pizza);
+		response.sendRedirect("/livio-pizzeria-admin-web/pizzas/list");
 	}
 
 	public PizzaDao getPizzaDao() {

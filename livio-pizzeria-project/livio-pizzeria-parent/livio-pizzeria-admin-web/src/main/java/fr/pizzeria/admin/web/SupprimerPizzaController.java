@@ -2,7 +2,6 @@ package fr.pizzeria.admin.web;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,19 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.dao.pizza.PizzaDao;
 import fr.pizzeria.dao.pizza.PizzaDaoJpa;
-import fr.pizzeria.enumeration.CategoriePizza;
-import fr.pizzeria.model.Pizza;
 
 /**
- * Servlet implementation class AjouterPizzaController
+ * Servlet implementation class SupprimerPizzaController
  */
-public class AjouterPizzaController extends HttpServlet {
+public class SupprimerPizzaController extends HttpServlet {
 	private PizzaDao pizzaDao = new PizzaDaoJpa();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AjouterPizzaController() {
+	public SupprimerPizzaController() {
 		super();
 	}
 
@@ -32,9 +29,9 @@ public class AjouterPizzaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pages/new.pizza.jsp");
-
-		dispatcher.forward(request, response);
+		String id = request.getParameter("id");
+		getPizzaDao().deletePizza(Integer.parseInt(id));
+		response.sendRedirect("/livio-pizzeria-admin-web/pizzas/list");
 	}
 
 	/**
@@ -43,16 +40,7 @@ public class AjouterPizzaController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String code = request.getParameter("code");
-		String nom = request.getParameter("nom");
-		double prix = Double.valueOf(request.getParameter("prix"));
-		CategoriePizza categorie = CategoriePizza.valueOf(request.getParameter("categorie"));
-		String urlImage = request.getParameter("url_image");
 
-		Pizza pizza = new Pizza(code, nom, prix, categorie, urlImage);
-
-		getPizzaDao().save(pizza);
-		response.sendRedirect("/livio-pizzeria-admin-web/pizzas/list");
 	}
 
 	public PizzaDao getPizzaDao() {
