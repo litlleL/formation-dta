@@ -38,6 +38,7 @@ public class Pizza {
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza categoriePizza;
 	private String urlImage;
+	private boolean archiver = false;
 	@Transient
 	private static int nbPizzas;
 
@@ -82,10 +83,11 @@ public class Pizza {
 		nbPizzas += 1;
 	}
 
-	public Pizza(String code, String nom, double prix, CategoriePizza categorie, String urlImage) {
+	public Pizza(String code, String nom, double prix, CategoriePizza categorie, String urlImage, boolean archiver) {
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
+		this.setArchiver(archiver);
 		this.categoriePizza = categorie;
 		this.urlImage = urlImage;
 	}
@@ -169,6 +171,14 @@ public class Pizza {
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+
+	public boolean isArchiver() {
+		return archiver;
+	}
+
+	public void setArchiver(boolean archiver) {
+		this.archiver = archiver;
 	}
 
 }

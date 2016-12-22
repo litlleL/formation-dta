@@ -64,7 +64,8 @@ public class PizzaDaoJpa implements PizzaDao {
 	public List<Pizza> findAll() throws PizzaException {
 
 		return execute((EntityManager entity) -> {
-			TypedQuery<Pizza> pizzaQuery = getEntityManager().createQuery("select p from Pizza p", Pizza.class);
+			TypedQuery<Pizza> pizzaQuery = getEntityManager()
+					.createQuery("select p from Pizza p where p.archiver='false'", Pizza.class);
 			return pizzaQuery.getResultList();
 		});
 
@@ -112,11 +113,12 @@ public class PizzaDaoJpa implements PizzaDao {
 	public void deletePizza(int id) throws PizzaException {
 
 		execute((EntityManager entity) -> {
+
 			Pizza pizza = getEntityManager().find(Pizza.class, id);
 
 			if (getEntityManager() != null) {
 				getEntityManager().getTransaction().begin();
-				getEntityManager().remove(pizza);
+				pizza.setArchiver(true);
 				getEntityManager().getTransaction().commit();
 			}
 

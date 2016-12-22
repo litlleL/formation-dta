@@ -3,6 +3,7 @@ package fr.pizzeria.admin.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoJpa;
+import fr.pizzeria.admin.service.PizzaService;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -19,7 +19,8 @@ import fr.pizzeria.model.Pizza;
  */
 @WebServlet("/pizzas/list")
 public class ListerPizzaController extends HttpServlet {
-	private PizzaDao pizzaDao = new PizzaDaoJpa();
+	@Inject
+	private PizzaService pizzaService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,7 +35,7 @@ public class ListerPizzaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Pizza> list = getPizzaDao().findAll();
+		List<Pizza> list = pizzaService.findAll();
 		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pages/list.pizza.jsp");
 
@@ -49,14 +50,6 @@ public class ListerPizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
-	}
-
-	public PizzaDao getPizzaDao() {
-		return pizzaDao;
-	}
-
-	public void setPizzaDao(PizzaDao pizzaDao) {
-		this.pizzaDao = pizzaDao;
 	}
 
 }

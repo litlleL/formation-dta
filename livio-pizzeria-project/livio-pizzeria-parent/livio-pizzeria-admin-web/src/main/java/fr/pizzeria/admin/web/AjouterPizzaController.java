@@ -50,8 +50,8 @@ public class AjouterPizzaController extends HttpServlet {
 		double prix = Double.valueOf(request.getParameter("prix"));
 		CategoriePizza categorie = CategoriePizza.valueOf(request.getParameter("categorie"));
 		String urlImage = request.getParameter("url_image");
-
-		Pizza pizza = new Pizza(code, nom, prix, categorie, urlImage);
+		boolean archiver = false;
+		Pizza pizza = new Pizza(code, nom, prix, categorie, urlImage, archiver);
 
 		getPizzaDao().save(pizza);
 		response.sendRedirect("/livio-pizzeria-admin-web/pizzas/list");
