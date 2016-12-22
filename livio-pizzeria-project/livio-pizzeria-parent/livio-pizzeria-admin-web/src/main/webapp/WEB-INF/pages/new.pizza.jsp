@@ -11,7 +11,8 @@
 <title>Modification de la pizza</title>
 </head>
 <body>
-	<c:if test="${!empty log}">
+	
+<c:if test="${!empty user}">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
    
@@ -25,7 +26,7 @@
       <a class="navbar-brand" href="#">La florentina</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form  action="/logout" id="sigout" class="navbar-form navbar-right" role="form" method="POST">
+      <form  action="/livio-pizzeria-admin-web/logout" id="sigout" class="navbar-form navbar-right" role="form" method="POST">
           <button type="submit" class="btn btn-primary">Logout</button>
        </form>
     </div>
@@ -34,7 +35,7 @@
 </c:if>
 
 
-<c:if test="${empty log}">
+<c:if test="${empty user}">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
    
