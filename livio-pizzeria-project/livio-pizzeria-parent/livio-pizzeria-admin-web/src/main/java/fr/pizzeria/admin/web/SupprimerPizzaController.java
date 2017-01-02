@@ -2,21 +2,22 @@ package fr.pizzeria.admin.web;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoJpa;
+import fr.pizzeria.admin.service.PizzaService;
 
 /**
  * Servlet implementation class SupprimerPizzaController
  */
 @WebServlet("/pizzas/delete")
 public class SupprimerPizzaController extends HttpServlet {
-	private PizzaDao pizzaDao = new PizzaDaoJpa();
+	@Inject
+	private PizzaService pizzaDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,12 +46,8 @@ public class SupprimerPizzaController extends HttpServlet {
 
 	}
 
-	public PizzaDao getPizzaDao() {
+	public PizzaService getPizzaDao() {
 		return pizzaDao;
-	}
-
-	public void setPizzaDao(PizzaDao pizzaDao) {
-		this.pizzaDao = pizzaDao;
 	}
 
 }

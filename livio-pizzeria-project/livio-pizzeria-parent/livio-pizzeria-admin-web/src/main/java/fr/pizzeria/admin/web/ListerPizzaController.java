@@ -19,14 +19,15 @@ import fr.pizzeria.model.Pizza;
  */
 @WebServlet("/pizzas/list")
 public class ListerPizzaController extends HttpServlet {
+
 	@Inject
-	private PizzaService pizzaService;
+	private PizzaService pizzaDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ListerPizzaController() {
-		super();
+
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class ListerPizzaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Pizza> list = pizzaService.findAll();
+		List<Pizza> list = getPizzaDao().findAll();
 		request.setAttribute("list", list);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/pages/list.pizza.jsp");
 
@@ -50,6 +51,10 @@ public class ListerPizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	public PizzaService getPizzaDao() {
+		return pizzaDao;
 	}
 
 }

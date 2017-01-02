@@ -4,17 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoJpa;
+import fr.pizzeria.admin.service.PizzaService;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaServletWeb extends HttpServlet {
 
-	private PizzaDao pizzaDao = new PizzaDaoJpa();
+	@Inject
+	private PizzaService pizzaDao;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

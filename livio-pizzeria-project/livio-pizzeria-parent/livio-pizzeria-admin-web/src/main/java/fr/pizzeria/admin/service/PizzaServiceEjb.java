@@ -8,71 +8,44 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.dao.exception.PizzaException;
-import fr.pizzeria.dao.pizza.PizzaDao;
 import fr.pizzeria.model.Pizza;
 
 @Stateless
-public class PizzaServiceEjb implements PizzaDao {
+public class PizzaServiceEjb {
 
-	@PersistenceContext(unitName = "pizza-ds")
+	@PersistenceContext
 	private EntityManager entityManager;
 
-	/**
-	 * 
-	 *
-	 * @param <T>
-	 */
-	@FunctionalInterface
-	interface IRunJql<T> {
-		T exec(EntityManager entityManager);
-	}
-
-	/**
-	 * 
-	 * @param run
-	 * @return
-	 */
-	public <T> T execute(IRunJql<T> run) {
-		try {
-
-			return run.exec(entityManager);
-
-		} catch (Exception e) {
-			if (getEntityManager() != null) {
-				getEntityManager().getTransaction().rollback();
-			}
-			throw new PizzaException(e);
-		} finally {
-			if (entityManager != null) {
-				getEntityManager().close();
-			}
-		}
-	}
-
-	@Override
 	public List<Pizza> findAll() throws PizzaException {
-
-		return execute((EntityManager entity) -> {
-			TypedQuery<Pizza> pizzaQuery = getEntityManager()
-					.createQuery("select p from Pizza p where p.archiver='false'", Pizza.class);
-			return pizzaQuery.getResultList();
-		});
-
+		TypedQuery<Pizza> pizzaQuery = getEntityManager().createQuery("select p from Pizza p where p.archiver='false'",
+				Pizza.class);
+		return pizzaQuery.getResultList();
 	}
 
-	@Override
 	public void save(Pizza p) throws PizzaException {
-
+		getEntityManager().persist(p);
 	}
 
-	@Override
 	public void updatePizza(int id, Pizza p) throws PizzaException {
+		Pizza pizza = getEntityManager().find(Pizza.class, id);
+		pizza.setCode(p.getCode());
+		pizza.setNom(p.getNom());
+		pizza.setPrix(p.getPrix());
+		pizza.setCategoriePizza(p.getCategoriePizza());
 
 	}
 
-	@Override
 	public void deletePizza(int id) throws PizzaException {
+		Pizza pizza = getEntityManager().find(Pizza.class, id);
 
+		if (getEntityManager() != null) {
+			pizza.setArchiver(true);
+		}
+
+	}
+
+	public Pizza findPizza(int id) throws PizzaException {
+		return getEntityManager().find(Pizza.class, id);
 	}
 
 	/**

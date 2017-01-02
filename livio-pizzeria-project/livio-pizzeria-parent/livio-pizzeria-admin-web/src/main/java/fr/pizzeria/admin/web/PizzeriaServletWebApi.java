@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoJpa;
+import fr.pizzeria.admin.service.PizzaService;
 import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -20,8 +20,8 @@ import fr.pizzeria.model.Pizza;
 @WebServlet("/api/servlet/pizzas")
 public class PizzeriaServletWebApi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private PizzaDao pizzaDao = new PizzaDaoJpa();
+	@Inject
+	private PizzaService pizzaDao;
 
 	/**
 	 * Default constructor.
@@ -66,12 +66,8 @@ public class PizzeriaServletWebApi extends HttpServlet {
 		pizzaDao.deletePizza(Integer.parseInt(idPizza));
 	}
 
-	public PizzaDao getPizzaDao() {
+	public PizzaService getPizzaDao() {
 		return pizzaDao;
-	}
-
-	public void setPizzaDao(PizzaDao pizzaDao) {
-		this.pizzaDao = pizzaDao;
 	}
 
 }

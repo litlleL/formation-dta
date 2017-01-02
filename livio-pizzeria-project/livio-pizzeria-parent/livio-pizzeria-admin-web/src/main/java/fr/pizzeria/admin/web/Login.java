@@ -11,16 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoJpa;
-
 /**
  * Servlet implementation class LoginAdmin
  */
 @WebServlet("/login")
 public class Login extends HttpServlet {
-
-	private PizzaDao pizzaDao = new PizzaDaoJpa();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -61,30 +56,7 @@ public class Login extends HttpServlet {
 			request.setAttribute("errors", errors);
 			doGet(request, response);
 		}
-		// String email = request.getParameter("email");
-		// String pass = request.getParameter("password");
-		//
-		// System.out.println(email);
-		// System.out.println(pass);
-		// if (("admin@pizzeria.fr").equals(email)) {
-		// if (("admin").equals(pass)) {
-		// request.setAttribute("log", email);
-		// response.sendRedirect("http://localhost:8080/livio-pizzeria-admin-web/pizzas/list");
-		// } else {
-		// response.sendRedirect("http://localhost:8080/livio-pizzeria-admin-web/pizzas/list");
-		// }
-		// } else {
-		// response.sendRedirect("http://localhost:8080/livio-pizzeria-admin-web/pizzas/list");
-		// }
 
-	}
-
-	public PizzaDao getPizzaDao() {
-		return pizzaDao;
-	}
-
-	public void setPizzaDao(PizzaDao pizzaDao) {
-		this.pizzaDao = pizzaDao;
 	}
 
 }
