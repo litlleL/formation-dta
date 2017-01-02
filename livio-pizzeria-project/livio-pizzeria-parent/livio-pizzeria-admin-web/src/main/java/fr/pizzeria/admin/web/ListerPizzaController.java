@@ -27,7 +27,6 @@ public class ListerPizzaController extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ListerPizzaController() {
-
 	}
 
 	/**
