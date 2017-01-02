@@ -14,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fr.pizzeria.admin.service.PizzaService;
-import fr.pizzeria.enumeration.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 @Path("/pizzas")
@@ -31,17 +30,14 @@ public class PizzaResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void doPost() {
-		Pizza p = new Pizza("MAR", "Margherita", 12.50, CategoriePizza.VIANDE);
+	public void doPost(Pizza p) {
 		getPizzaDao().save(p);
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void doPut() {
-		Pizza pizza = getPizzaDao().findPizza(2);
-		pizza.setCode("MAR");
-		getPizzaDao().updatePizza(2, pizza);
+	public void doPut(Pizza p) {
+		getPizzaDao().updatePizza(p.getId(), p);
 	}
 
 	@DELETE

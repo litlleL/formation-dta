@@ -32,7 +32,6 @@ public class PizzaServiceEjb {
 		pizza.setNom(p.getNom());
 		pizza.setPrix(p.getPrix());
 		pizza.setCategoriePizza(p.getCategoriePizza());
-
 	}
 
 	public void deletePizza(int id) throws PizzaException {

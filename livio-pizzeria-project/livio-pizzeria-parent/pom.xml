@@ -101,6 +101,16 @@
 				<artifactId>standard</artifactId>
 				<version>1.1.2</version>
 			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>2.25</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-json-jackson</artifactId>
+				<version>2.22</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<profiles>
@@ -131,7 +141,7 @@
 		</profile>
 
 		<profile>
-			<id>jpa</id>
+			<id>jpaAdmin</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<livreur.impl>fr.pizzeria.dao.service.livreur.LivreurDaoFactoryJpa</livreur.impl>
@@ -145,7 +155,7 @@
 		</profile>
 
 		<profile>
-			<id>jpac</id>
+			<id>jpaClient</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
@@ -159,7 +169,7 @@
 		</profile>
 
 		<profile>
-			<id>jpal</id>
+			<id>jpaLivreur</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
@@ -174,7 +184,7 @@
 		</profile>
 
 		<profile>
-			<id>jpaw</id>
+			<id>jpaWeb</id>
 			<properties>
 				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryJPA</factoryValue.mode>
 				<client.impl>fr.pizzeria.dao.service.client.ClientDaoFactoryJpa</client.impl>
@@ -188,6 +198,17 @@
 			</properties>
 		</profile>
 
+		<profile>
+			<id>jpaRest</id>
+			<properties>
+				<factoryValue.mode>fr.pizzeria.dao.service.pizza.PizzaFactoryRest</factoryValue.mode>
+				<persitence.unit>livio-pizzeria</persitence.unit>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria4</jdbc.url>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
+			</properties>
+		</profile>
 	</profiles>
 
 </project>

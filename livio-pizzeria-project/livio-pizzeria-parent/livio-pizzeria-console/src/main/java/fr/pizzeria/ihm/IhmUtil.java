@@ -34,6 +34,12 @@ public class IhmUtil {
 		this.livreurDao = livreurDao.getLivreurDao();
 	}
 
+	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao) {
+		super();
+		this.scanner = scanner;
+		this.pizzaDao = pizzaDao.getPizzaDaoFactory();
+	}
+
 	public Scanner getScanner() {
 		return this.scanner;
 	}
