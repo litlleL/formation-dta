@@ -108,6 +108,26 @@
 	</div>
 
 	<script>
+// 		$.ajax({
+// 					type : "GET",
+// 					url : "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients",
+// 					dataType : 'JSON',
+// 					success : function(data) {
+// 						console.log(data);
+// 						$.each(data, function(i, item) {
+// 							$("#liste").append(
+// 									'<tr><td class = "col-md-2">' + item.nom
+// 											+ '</td> <td class = "col-md-2">'
+// 											+ item.prenom
+// 											+ '</td> <td class = "col-md-4">'
+// 											+ item.adresse
+// 											+ '</td> <td class = "col-md-4">'
+// 											+ item.email + '</td></tr>');
+// 						});
+// 					}
+
+// 				});
+
 		(function() {
 			var PizzaApi = "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients";
 			$.getJSON(PizzaApi, {
