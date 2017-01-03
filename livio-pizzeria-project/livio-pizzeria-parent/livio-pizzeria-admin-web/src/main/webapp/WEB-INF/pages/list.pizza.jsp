@@ -84,8 +84,8 @@
 <div class="container">
  	<div class="page-header">
      	<p>
-     		<a class="btn btn-success" href="#Accueil" role="button">Accueil</a>
-     		<a class="btn btn-success" href="<c:url value="/pizzas/new"/>" role="button">Ajouter une pizza</a>
+     		<a class="btn btn-success" href="<c:url value="/pizzas/new"/>" role="button">Ajouter une pizza</a>	
+     		<a class="btn btn-success" href="<c:url value="/clients/add"/>" role="button">Lister les clients	</a>
      	</p>
      </div>
      <div class="table-responsive">

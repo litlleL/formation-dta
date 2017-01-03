@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class AuthFilter
  */
-@WebFilter("/pizzas/*")
+@WebFilter(urlPatterns = { "/pizzas/*", "/clients/*" })
 public class AuthFilter implements Filter {
 
 	/**
