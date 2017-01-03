@@ -128,6 +128,15 @@
 
 // 				});
 
+		$("#form").hide();
+		$("#ajouter_client a").click(function() {
+				$("#form").show();
+		});
+			
+		$("#hide_ajouter").click(function() {
+			$("#form").hide();
+		});
+
 		(function() {
 			var PizzaApi = "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients";
 			$.getJSON(PizzaApi, {
@@ -149,8 +158,9 @@
 		})();
 	</script>
 
-	<div class="container">
-		<form class="form-horizontal">
+	<div class="container" id="form">
+	<a id="hide_ajouter" href="#" class="btn btn-primary">Afficher/cacher </a>
+		<form  class="form-horizontal">
 			<fieldset>
 
 				<!-- Form Name -->
