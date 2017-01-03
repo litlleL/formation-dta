@@ -11,6 +11,56 @@
 <title>clients</title>
 
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+<script>
+	// 		$.ajax({
+	// 					type : "GET",
+	// 					url : "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients",
+	// 					dataType : 'JSON',
+	// 					success : function(data) {
+	// 						console.log(data);
+	// 						$.each(data, function(i, item) {
+	// 							$("#liste").append(
+	// 									'<tr><td class = "col-md-2">' + item.nom
+	// 											+ '</td> <td class = "col-md-2">'
+	// 											+ item.prenom
+	// 											+ '</td> <td class = "col-md-4">'
+	// 											+ item.adresse
+	// 											+ '</td> <td class = "col-md-4">'
+	// 											+ item.email + '</td></tr>');
+	// 						});
+	// 					}
+
+	// 				});
+
+	(function() {
+		var PizzaApi = "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients";
+		$.getJSON(PizzaApi, {
+			format : "json"
+		}).done(
+				function(data) {
+					console.log(data);
+					$.each(data, function(i, item) {
+						$("#liste").append(
+								'<tr><td class = "col-md-2">' + item.nom
+										+ '</td> <td class = "col-md-2">'
+										+ item.prenom
+										+ '</td> <td class = "col-md-4">'
+										+ item.adresse
+										+ '</td> <td class = "col-md-4">'
+										+ item.email + '</td></tr>');
+					});
+				});
+	})();
+
+	$(document).ready(function() {
+		$("#nuit").click(function() {
+			$("#form").hide();
+		});
+		$("#jour").click(function() {
+			$("#form").show();
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -107,60 +157,14 @@
 		</div>
 	</div>
 
-	<script>
-// 		$.ajax({
-// 					type : "GET",
-// 					url : "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients",
-// 					dataType : 'JSON',
-// 					success : function(data) {
-// 						console.log(data);
-// 						$.each(data, function(i, item) {
-// 							$("#liste").append(
-// 									'<tr><td class = "col-md-2">' + item.nom
-// 											+ '</td> <td class = "col-md-2">'
-// 											+ item.prenom
-// 											+ '</td> <td class = "col-md-4">'
-// 											+ item.adresse
-// 											+ '</td> <td class = "col-md-4">'
-// 											+ item.email + '</td></tr>');
-// 						});
-// 					}
 
-// 				});
-
-		$("#form").hide();
-		$("#ajouter_client a").click(function() {
-				$("#form").show();
-		});
-			
-		$("#hide_ajouter").click(function() {
-			$("#form").hide();
-		});
-
-		(function() {
-			var PizzaApi = "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients";
-			$.getJSON(PizzaApi, {
-				format : "json"
-			}).done(
-					function(data) {
-						console.log(data);
-						$.each(data, function(i, item) {
-							$("#liste").append(
-									'<tr><td class = "col-md-2">' + item.nom
-											+ '</td> <td class = "col-md-2">'
-											+ item.prenom
-											+ '</td> <td class = "col-md-4">'
-											+ item.adresse
-											+ '</td> <td class = "col-md-4">'
-											+ item.email + '</td></tr>');
-						});
-					});
-		})();
-	</script>
-
+	<div class="container">
+		<button id="jour" class="btn btn-primary">Afficher</button>
+		/
+		<button id="nuit" class="btn btn-primary">Cacher</button>
+	</div>
 	<div class="container" id="form">
-	<a id="hide_ajouter" href="#" class="btn btn-primary">Afficher/cacher </a>
-		<form  class="form-horizontal">
+		<form class="form-horizontal">
 			<fieldset>
 
 				<!-- Form Name -->
