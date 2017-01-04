@@ -23,15 +23,14 @@ public class PizzeriaAdminConsoleApp {
 	 */
 	public static void main(String[] args) {
 
-		// ResourceBundle bundle = ResourceBundle.getBundle("application");
-		// String daoImpl = bundle.getString("dao.imple");
-
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				PizzeriaAdminConsoleAppConfig.class)) {
 			context.getBean(MenuAdmin.class).start();
 		}
 
 	}
+	// ResourceBundle bundle = ResourceBundle.getBundle("application");
+	// String daoImpl = bundle.getString("dao.imple");
 
 	// try (ClassPathXmlApplicationContext context = new
 	// ClassPathXmlApplicationContext(daoImpl,

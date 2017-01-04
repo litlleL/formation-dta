@@ -16,9 +16,7 @@ import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 public class PizzeriaAdminConsoleAppConfig {
 
 	@Bean
-
 	@Value("${dao.impl}")
-
 	public PizzaDaoFactory pizzaFactory() {
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String daoImpl = bundle.getString("dao.impl");
