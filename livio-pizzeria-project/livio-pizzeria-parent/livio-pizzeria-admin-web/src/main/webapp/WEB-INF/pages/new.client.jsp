@@ -34,29 +34,38 @@
 
 	(function() {
 		var PizzaApi = "http://localhost:8080/livio-pizzeria-admin-web/api/rest/clients";
-		$.getJSON(PizzaApi, {
-			format : "json"
-		}).done(
-				function(data) {
-					console.log(data);
-					$.each(data, function(i, item) {
-						$("#liste").append(
-								'<tr><td class = "col-md-2">' + item.nom
-										+ '</td> <td class = "col-md-2">'
-										+ item.prenom
-										+ '</td> <td class = "col-md-4">'
-										+ item.adresse
-										+ '</td> <td class = "col-md-4">'
-										+ item.email + '</td></tr>');
-					});
-				});
+		$
+				.getJSON(PizzaApi, {
+					format : "json"
+				})
+				.done(
+						function(data) {
+							console.log(data);
+							$
+									.each(
+											data,
+											function(i, item) {
+												$("#liste")
+														.append(
+																'<tr><td class = "col-md-2">'
+																		+ item.nom
+																		+ '</td> <td class = "col-md-2">'
+																		+ item.prenom
+																		+ '</td> <td class = "col-md-4">'
+																		+ item.adresse
+																		+ '</td> <td class = "col-md-2">'
+																		+ item.email
+																		+ '</td> <td class = "col-md-2"> <button class="btn btn-primary afficher">Edition</button> </td> </tr>');
+											});
+						});
 	})();
 
 	$(document).ready(function() {
-		$("#nuit").click(function() {
+		$("#form").hide();
+		$(".cacher").click(function() {
 			$("#form").hide();
 		});
-		$("#jour").click(function() {
+		$(".afficher").click(function() {
 			$("#form").show();
 		});
 	});
@@ -159,9 +168,9 @@
 
 
 	<div class="container">
-		<button id="jour" class="btn btn-primary">Afficher</button>
+		<button  class="btn btn-primary afficher">Creation</button>
 		/
-		<button id="nuit" class="btn btn-primary">Cacher</button>
+		<button class="btn btn-primary cacher">Cacher</button>
 	</div>
 	<div class="container" id="form">
 		<form class="form-horizontal">

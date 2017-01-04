@@ -1,11 +1,9 @@
 package fr.pizzeria.console;
 
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
-import fr.pizzeria.dao.exception.PizzaException;
-import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
-import fr.pizzeria.ihm.IhmUtil;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import fr.pizzeria.ihm.MenuAdmin;
 
 /**
@@ -27,21 +25,22 @@ public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {
 
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
-		String daoImpl = bundle.getString("dao.impl");
-		// String livreurImpl = bundle.getString("livreur.impl");
+		String daoImpl = bundle.getString("dao.imple");
 
-		PizzaDaoFactory pizzaFactory = null;
-		// LivreurDaoFactory livreurFactory = null;
-		try {
-			pizzaFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
-			// livreurFactory = (LivreurDaoFactory)
-			// Class.forName(livreurImpl).newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			throw new PizzaException(e);
+		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(daoImpl,
+				"application-config.xml")) {
+			context.getBean(MenuAdmin.class).start();
 		}
-
-		IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), pizzaFactory);
-		MenuAdmin menu = new MenuAdmin(ihmUtil);
-		menu.start();
 	}
+	// PizzaDaoFactory pizzaFactory = null;
+	// try {
+	// pizzaFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
+	// } catch (InstantiationException | IllegalAccessException |
+	// ClassNotFoundException e) {
+	// throw new PizzaException(e);
+	// }
+
+	// IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), pizzaFactory);
+	// sMenuAdmin menu = new MenuAdmin(ihmUtil);
+
 }
