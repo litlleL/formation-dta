@@ -1,9 +1,8 @@
 package fr.pizzeria.console;
 
-import java.util.ResourceBundle;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
+import fr.pizzeria.config.PizzeriaAdminConsoleAppConfig;
 import fr.pizzeria.ihm.MenuAdmin;
 
 /**
@@ -24,14 +23,22 @@ public class PizzeriaAdminConsoleApp {
 	 */
 	public static void main(String[] args) {
 
-		ResourceBundle bundle = ResourceBundle.getBundle("application");
-		String daoImpl = bundle.getString("dao.imple");
+		// ResourceBundle bundle = ResourceBundle.getBundle("application");
+		// String daoImpl = bundle.getString("dao.imple");
 
-		try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(daoImpl,
-				"application-config.xml")) {
+		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				PizzeriaAdminConsoleAppConfig.class)) {
 			context.getBean(MenuAdmin.class).start();
 		}
+
 	}
+
+	// try (ClassPathXmlApplicationContext context = new
+	// ClassPathXmlApplicationContext(daoImpl,
+	// "application-config.xml")) {
+	// context.getBean(MenuAdmin.class).start();
+	// }
+
 	// PizzaDaoFactory pizzaFactory = null;
 	// try {
 	// pizzaFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();

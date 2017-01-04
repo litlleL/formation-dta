@@ -3,6 +3,9 @@ package fr.pizzeria.ihm;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.pizzeria.action.AddNewLivreur;
 import fr.pizzeria.action.Create;
 import fr.pizzeria.action.Delete;
@@ -21,16 +24,14 @@ import fr.pizzeria.action.Update;
  *
  * @since 09/12/2016
  */
+@Component
 public class MenuAdmin {
 
 	Map<Integer, MenuInterface> listeOutils = new HashMap<>();
 
 	IhmUtil reader;
 
-	/**
-	 * 
-	 * @param ihmUtil
-	 */
+	@Autowired
 	public MenuAdmin(IhmUtil ihmUtil) {
 		listeOutils.put(0, new List(ihmUtil));
 		listeOutils.put(1, new ListCategorie(ihmUtil));
