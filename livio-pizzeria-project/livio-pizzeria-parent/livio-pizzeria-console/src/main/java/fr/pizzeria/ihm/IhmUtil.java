@@ -17,9 +17,7 @@ import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
  */
 @Component
 public class IhmUtil {
-
 	private Scanner scanner;
-
 	private PizzaDao pizzaDao;
 
 	private LivreurDao livreurDao;

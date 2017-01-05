@@ -29,4 +29,5 @@ public class PizzeriaAdminConsoleAppConfig {
 	public Scanner sc() {
 		return new Scanner(System.in);
 	}
+
 }

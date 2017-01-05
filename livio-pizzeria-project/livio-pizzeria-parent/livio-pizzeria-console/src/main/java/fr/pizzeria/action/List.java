@@ -3,6 +3,7 @@ package fr.pizzeria.action;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
@@ -13,6 +14,7 @@ import fr.pizzeria.model.Pizza;
  *
  * @since 09/12/2016
  */
+@Controller
 public class List extends MenuInterface {
 
 	@Autowired
@@ -24,6 +26,7 @@ public class List extends MenuInterface {
 	 */
 	public List(IhmUtil ihmUtil) {
 		super();
+		this.setIhmUtil(ihmUtil);
 		this.setLibelle("Lister les pizzas");
 	}
 
