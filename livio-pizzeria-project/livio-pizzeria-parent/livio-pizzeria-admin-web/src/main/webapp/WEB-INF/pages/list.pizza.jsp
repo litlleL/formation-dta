@@ -14,7 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Liste des pizzas</title>
-<link href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/dist/css/bootstrap.css"/>" rel="stylesheet" type="text/css">
 
 </head>
 
