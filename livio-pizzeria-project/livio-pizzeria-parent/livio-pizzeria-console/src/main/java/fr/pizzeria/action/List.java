@@ -2,6 +2,8 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -13,6 +15,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class List extends MenuInterface {
 
+	@Autowired
 	private IhmUtil ihmUtil;
 
 	/**
@@ -21,7 +24,6 @@ public class List extends MenuInterface {
 	 */
 	public List(IhmUtil ihmUtil) {
 		super();
-		this.setIhmUtil(ihmUtil);
 		this.setLibelle("Lister les pizzas");
 	}
 
@@ -36,6 +38,10 @@ public class List extends MenuInterface {
 	@Override
 	public void show() {
 		Logger.getLogger(List.class.getName()).info(this.getLibelle());
+	}
+
+	public String libelle() {
+		return this.getLibelle();
 	}
 
 	public IhmUtil getIhmUtil() {

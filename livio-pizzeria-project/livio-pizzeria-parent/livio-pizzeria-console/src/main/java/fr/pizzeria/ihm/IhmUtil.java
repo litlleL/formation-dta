@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import fr.pizzeria.dao.livreur.LivreurDao;
 import fr.pizzeria.dao.pizza.PizzaDao;
-import fr.pizzeria.dao.service.livreur.LivreurDaoFactory;
 import fr.pizzeria.dao.service.pizza.PizzaDaoFactory;
 
 /**
@@ -25,18 +24,19 @@ public class IhmUtil {
 
 	private LivreurDao livreurDao;
 
-	/**
-	 *
-	 * @param scanner
-	 * @param livreurDao
-	 * @param pizzaFactoryTableau
-	 */
-	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao, LivreurDaoFactory livreurDao) {
-		super();
-		this.scanner = scanner;
-		this.pizzaDao = pizzaDao.getPizzaDaoFactory();
-		this.livreurDao = livreurDao.getLivreurDao();
-	}
+	// /**
+	// *
+	// * @param scanner
+	// * @param livreurDao
+	// * @param pizzaFactoryTableau
+	// */
+	// public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao,
+	// LivreurDaoFactory livreurDao) {
+	// super();
+	// this.scanner = scanner;
+	// this.pizzaDao = pizzaDao.getPizzaDaoFactory();
+	// this.livreurDao = livreurDao.getLivreurDao();
+	// }
 
 	@Autowired
 	public IhmUtil(Scanner scanner, PizzaDaoFactory pizzaDao) {

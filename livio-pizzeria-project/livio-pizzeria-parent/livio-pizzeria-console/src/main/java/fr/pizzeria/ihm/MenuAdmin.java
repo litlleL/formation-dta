@@ -67,7 +67,6 @@ public class MenuAdmin {
 		} else if (Integer.parseInt(value) >= 10) {
 			listeOutils.get(listeOutils.size() - 1).executeAction();
 			this.getReader().getPizzaDao().quitApp();
-			this.getReader().getLivreurDao().quitApp();
 			return;
 		}
 
