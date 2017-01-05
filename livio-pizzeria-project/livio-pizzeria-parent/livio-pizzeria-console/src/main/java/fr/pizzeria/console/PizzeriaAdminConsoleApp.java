@@ -30,24 +30,4 @@ public class PizzeriaAdminConsoleApp {
 
 	}
 
-	// ResourceBundle bundle = ResourceBundle.getBundle("application");
-	// String daoImpl = bundle.getString("dao.imple");
-
-	// try (ClassPathXmlApplicationContext context = new
-	// ClassPathXmlApplicationContext(daoImpl,
-	// "application-config.xml")) {
-	// context.getBean(MenuAdmin.class).start();
-	// }
-
-	// PizzaDaoFactory pizzaFactory = null;
-	// try {
-	// pizzaFactory = (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
-	// } catch (InstantiationException | IllegalAccessException |
-	// ClassNotFoundException e) {
-	// throw new PizzaException(e);
-	// }
-
-	// IhmUtil ihmUtil = new IhmUtil(new Scanner(System.in), pizzaFactory);
-	// sMenuAdmin menu = new MenuAdmin(ihmUtil);
-
 }

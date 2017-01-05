@@ -1,6 +1,4 @@
-package fr.pizzeria.config;
-
-import java.util.Scanner;
+package fr.pizzeria.dao.pizza.spring;
 
 import javax.sql.DataSource;
 
@@ -13,18 +11,20 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
 @ComponentScan("fr.pizzeria")
-public class PizzeriaAdminConsoleAppConfig {
+public class SpringJDBCConfig {
 
 	// @Bean
-	// public PizzaDaoFactory pizzaFactory() {
-	// ResourceBundle bundle = ResourceBundle.getBundle("application");
-	// String daoImpl = bundle.getString("dao.impl");
-	// try {
-	// return (PizzaDaoFactory) Class.forName(daoImpl).newInstance();
-	// } catch (InstantiationException | IllegalAccessException |
-	// ClassNotFoundException e) {
-	// throw new PizzaException(e);
-	// }
+	// public DataSource getDataSrouce() {
+	// DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	//
+	// dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+	//
+	// dataSource.setUrl("jdbc:mysql://localhost:3306/pizzeria4?useSSL=false");
+	//
+	// dataSource.setUsername("root");
+	//
+	// dataSource.setPassword("");
+	// return dataSource;
 	// }
 
 	@Bean
@@ -32,11 +32,6 @@ public class PizzeriaAdminConsoleAppConfig {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).addScript("pizzeria4.sql").build();
 		return db;
-	}
-
-	@Bean
-	public Scanner sc() {
-		return new Scanner(System.in);
 	}
 
 }

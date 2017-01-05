@@ -2,9 +2,6 @@ package fr.pizzeria.action;
 
 import java.util.logging.Logger;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
 import fr.pizzeria.ihm.IhmUtil;
 import fr.pizzeria.model.Pizza;
 
@@ -14,10 +11,8 @@ import fr.pizzeria.model.Pizza;
  *
  * @since 09/12/2016
  */
-@Controller
 public class List extends MenuInterface {
 
-	@Autowired
 	private IhmUtil ihmUtil;
 
 	/**
@@ -35,7 +30,7 @@ public class List extends MenuInterface {
 		this.ihmUtil.getPizzaDao().findAll().forEach(System.out::println);
 
 		Logger.getLogger(List.class.getName())
-				.info("------------------ " + Pizza.getNbPizzas() + " pizzas cr�es depuis le lancement du programme");
+				.info("------------------ " + Pizza.getNbPizzas() + " pizzas crees depuis le lancement du programme");
 	}
 
 	@Override
