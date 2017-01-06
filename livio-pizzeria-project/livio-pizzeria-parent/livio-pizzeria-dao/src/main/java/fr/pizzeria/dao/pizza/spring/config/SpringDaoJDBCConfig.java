@@ -3,6 +3,7 @@ package fr.pizzeria.dao.pizza.spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("fr.pizzeria.dao.pizza")
 @EnableTransactionManagement
+@EnableJpaRepositories("fr.pizzeria.dao.pizza.spring.repos")
 public class SpringDaoJDBCConfig {
 	//
 	// @Bean
@@ -33,13 +35,6 @@ public class SpringDaoJDBCConfig {
 	// }
 
 	@Bean
-	public LocalEntityManagerFactoryBean localEntity() {
-		LocalEntityManagerFactoryBean entityManagerFactoryBean = new LocalEntityManagerFactoryBean();
-		entityManagerFactoryBean.setPersistenceUnitName("livio-pizzeria");
-		return entityManagerFactoryBean;
-	}
-
-	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new JpaTransactionManager();
 	}
@@ -47,5 +42,12 @@ public class SpringDaoJDBCConfig {
 	@Bean
 	public PersistenceAnnotationBeanPostProcessor beanPostProcessor() {
 		return new PersistenceAnnotationBeanPostProcessor();
+	}
+
+	@Bean
+	public LocalEntityManagerFactoryBean entityManagerFactory() {
+		LocalEntityManagerFactoryBean entityManagerFactoryBean = new LocalEntityManagerFactoryBean();
+		entityManagerFactoryBean.setPersistenceUnitName("livio-pizzeria");
+		return entityManagerFactoryBean;
 	}
 }

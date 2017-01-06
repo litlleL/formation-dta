@@ -53,6 +53,10 @@ public class PizzaDaoSpringJpa implements PizzaDao {
 
 	}
 
+	public void quitApp() throws PizzaException {
+		entityManager.close();
+	}
+
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

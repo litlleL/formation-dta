@@ -25,6 +25,13 @@ public class PizzeriaAdminConsoleAppConfig {
 		}
 	}
 
+	// @Bean
+	// public DataSource getDataSource() {
+	// EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+	// EmbeddedDatabase db =
+	// builder.setType(EmbeddedDatabaseType.H2).addScript("pizzeria4.sql").build();
+	// return db;
+	// }
 	@Bean
 	public Scanner sc() {
 		return new Scanner(System.in);

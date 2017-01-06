@@ -1,6 +1,5 @@
-package fr.pizzeria.dao.pizza.spring;
+package fr.pizzeria.dao.pizza.spring.repos;
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,28 +14,20 @@ import fr.pizzeria.model.Pizza;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringDaoJDBCConfig.class)
-public class PizzaDaoSpringJpaTest {
-
+public class PizzaReposDaoTest {
 	@Autowired
-	public @Qualifier("pizzaDaoSpringJpa") PizzaDao pizzaDaoSpringJpa;
+	public @Qualifier("pizzaReposDao") PizzaDao pizzaReposDao;
 
 	@Test
 	public void testFindAll() {
-		// assertEquals(null, pizzaDaoSpringJpa);
-		pizzaDaoSpringJpa.findAll().forEach(System.out::println);
+		pizzaReposDao.findAll();
 	}
 
 	@Test
 	public void testSave() {
 		Pizza p = new Pizza("MAR", "mzargherita", 12.50, CategoriePizza.VIANDE);
-		pizzaDaoSpringJpa.save(p);
-		pizzaDaoSpringJpa.findAll().forEach(System.out::println);
-	}
-
-	@After
-	public void destroy() {
-		System.out.println("Au revoir");
-		pizzaDaoSpringJpa.quitApp();
+		pizzaReposDao.save(p);
+		pizzaReposDao.findAll().forEach(System.out::println);
 	}
 
 }
