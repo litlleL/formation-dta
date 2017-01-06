@@ -25,7 +25,7 @@ public class PizzaReposDaoTest {
 
 	@Test
 	public void testSave() {
-		Pizza p = new Pizza("MAR", "mzargherita", 12.50, CategoriePizza.VIANDE);
+		Pizza p = new Pizza("MAR", "margherita", 12.50, CategoriePizza.VIANDE);
 		pizzaReposDao.save(p);
 		pizzaReposDao.findAll().forEach(System.out::println);
 	}
