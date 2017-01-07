@@ -1,29 +1,28 @@
 package fr.pizzeria.aspect.service;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-@Component
 @Aspect
+@Component
 public class VerificationCorrectInput {
 
-	@Pointcut("execution(* fr.pizzeria.dao.pizza..*.**(..)")
-	private void inPizza() {
+	private Log log = LogFactory.getLog(this.getClass());
+
+	@Pointcut("execution(public * *(..))")
+	private void inrepos() {
 
 	}
 
-	@Pointcut("execution(public void save(..))")
-	private void allSaveMethod() {
-
-	}
-
-	@Before("inPizza() && allSaveMethod()")
+	@Around("inrepos()")
 	public void verifyCodeIsPresent(JoinPoint point) {
 
-		System.out.println(point.getSignature().getName());
-
+		log.info("runningClass: " + point.getSignature().getClass());
+		System.out.println("iciciciciciciciciciciccicicicic");
 	}
 }

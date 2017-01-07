@@ -1,3 +1,4 @@
+
 package fr.pizzeria.dao.pizza.spring.config;
 
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("fr.pizzeria.dao.pizza")
+@ComponentScan("fr.pizzeria.dao.pizza.spring")
 @EnableTransactionManagement
 @EnableJpaRepositories("fr.pizzeria.dao.pizza.spring.repos")
 public class SpringDaoJDBCConfig {
