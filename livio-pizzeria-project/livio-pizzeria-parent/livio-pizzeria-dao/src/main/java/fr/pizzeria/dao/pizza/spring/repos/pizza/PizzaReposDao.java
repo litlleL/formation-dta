@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.pizza.spring.repos;
+package fr.pizzeria.dao.pizza.spring.repos.pizza;
 
 import java.util.List;
 
@@ -27,13 +27,11 @@ public class PizzaReposDao implements PizzaDao {
 
 	@Override
 	public void updatePizza(int id, Pizza p) throws PizzaException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void deletePizza(int id) throws PizzaException {
-		// TODO Auto-generated method stub
 
 	}
 
