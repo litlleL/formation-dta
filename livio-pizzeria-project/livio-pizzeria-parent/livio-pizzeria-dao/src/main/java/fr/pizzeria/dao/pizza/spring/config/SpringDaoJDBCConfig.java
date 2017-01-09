@@ -13,7 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("fr.pizzeria.dao.pizza.spring")
+@ComponentScan("fr.pizzeria.dao.pizza")
 @EnableTransactionManagement
 @EnableJpaRepositories("fr.pizzeria.dao.pizza.spring.repos")
 @EnableAspectJAutoProxy
