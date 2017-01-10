@@ -1,5 +1,7 @@
 package fr.pizzeria.dao.pizza.spring.repos;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.pizzeria.dao.pizza.PizzaDao;
 import fr.pizzeria.dao.pizza.spring.config.SpringDaoJDBCConfig;
-import fr.pizzeria.enumeration.CategoriePizza;
-import fr.pizzeria.model.Pizza;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringDaoJDBCConfig.class)
@@ -20,14 +20,8 @@ public class PizzaReposDaoTest {
 
 	@Test
 	public void testFindAll() {
+		assertEquals(0, pizzaReposDao.findAll().size());
 		pizzaReposDao.findAll();
-	}
-
-	@Test
-	public void testSave() {
-		Pizza p = new Pizza("sdfsdfs", "margherita", 12.50, CategoriePizza.VIANDE);
-		// pizzaReposDao.save(p);
-		pizzaReposDao.findAll().forEach(System.out::println);
 	}
 
 }

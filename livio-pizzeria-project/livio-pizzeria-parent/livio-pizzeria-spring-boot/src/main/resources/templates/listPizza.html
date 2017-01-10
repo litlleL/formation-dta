@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="/webjars/jquery/1.11.1/jquery.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.2.0/css/bootstrap.css" />
+</head>
+<body>
+
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Nom</th>
+					<th>Prix</th>
+					<th>Categorie</th>
+					<th>Url Image</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p: ${listPizza}">
+					<td th:text="${p.code}"></td>
+					<td th:text="${p.nom}"></td>
+					<td th:text="${#numbers.formatDecimal(p.prix, 1, 2)}"></td>
+					<td th:text="${p.categoriePizza}"></td>
+					<td th:text="${p.urlImage}"></td>
+					<td><a th:href="@{'/pizzas/' + ${p.id}}" class="btn btn-large btn-success">Editer</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+
+</html>

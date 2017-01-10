@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="/webjars/jquery/1.11.1/jquery.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.2.0/css/bootstrap.css" />
+</head>
+<body>
+
+	<div class="container">
+		<form method="POST" th:action="@{'/pizzas/' + ${pizza.id}}" class="form-control">
+			<input type="text" th:field="*{pizza.code}" />
+			<input type="text" th:field="*{pizza.nom}" />
+			<input type="text" th:field="*{pizza.prix}" />
+			<input type="text" th:field="*{pizza.categoriePizza}" />
+			<input type="text" th:field="*{pizza.urlImage}" />
+			 <input type="submit" id="doUpdate" name="_eventId_updateData" value="valider" />
+		</form>
+	</div>
+	
+</body>
+</html>
+

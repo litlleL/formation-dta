@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,27 +19,26 @@ import fr.pizzeria.model.Pizza;
 import fr.service.repos.PizzaRepositories;
 
 @Controller
-@RequestMapping("/spring/pizzas")
 public class PizzaResources {
 
 	@Autowired
 	PizzaRepositories pizzaRepo;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/spring/pizzas", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Pizza> findAll() {
 		return pizzaRepo.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/spring/pizzas", method = RequestMethod.POST)
 	@ResponseBody
 	public void save(@RequestBody Pizza pizza) {
 		pizzaRepo.save(pizza);
 	}
 
-	@RequestMapping(value = "/{pizzaId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "pizzas/{pizzaId}", method = RequestMethod.POST)
 	@ResponseBody
-	public void updatePizza(@PathVariable int pizzaId, @RequestBody Pizza pizza) {
+	public void updatePizza(@PathVariable int pizzaId, @ModelAttribute("pizza") Pizza pizza) {
 		Pizza newPizza = pizzaRepo.findAll().stream().filter(pizzas -> pizzas.getId() == pizzaId).findFirst().get();
 		newPizza.setCode(pizza.getCode());
 		newPizza.setNom(pizza.getNom());
@@ -49,7 +49,7 @@ public class PizzaResources {
 
 	}
 
-	@RequestMapping(value = "/{pizzaId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/spring/pizzas/{pizzaId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deletePizza(@PathVariable int pizzaId) {
 		Pizza newPizza = pizzaRepo.findAll().stream().filter(pizzas -> pizzas.getId() == pizzaId).findFirst().get();
