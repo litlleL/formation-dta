@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.pizzeria.dao.pizza.spring.repos.ingredient.IngredientReposDao;
+import fr.pizzeria.dao.repos.ingredient.IngredientReposDao;
 import fr.pizzeria.model.Ingredient;
 
 @Controller
@@ -36,7 +36,7 @@ public class StockResource {
 		return ingredients.findAll().stream().filter(i -> i.getId() == ingredientId).findFirst().get();
 	}
 
-	@RequestMapping(value = "/rest/ingredients/{ingredientId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/ingredients/{ingredientId}", method = RequestMethod.POST)
 	@ResponseBody
 	public void updateIngredient(@PathVariable int ingredientId, @ModelAttribute("ingredient") Ingredient ingred) {
 		ingredients.update(ingred, ingredientId);

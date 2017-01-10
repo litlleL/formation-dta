@@ -1,6 +1,5 @@
 package fr.pizzeria.dao.pizza.spring;
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +30,6 @@ public class PizzaDaoSpringJpaTest {
 		Pizza p = new Pizza("MAR", "mzargherita", 12.50, CategoriePizza.VIANDE);
 		pizzaDaoSpringJpa.save(p);
 		pizzaDaoSpringJpa.findAll().forEach(System.out::println);
-	}
-
-	@After
-	public void destroy() {
-		System.out.println("Au revoir");
-		pizzaDaoSpringJpa.quitApp();
 	}
 
 }

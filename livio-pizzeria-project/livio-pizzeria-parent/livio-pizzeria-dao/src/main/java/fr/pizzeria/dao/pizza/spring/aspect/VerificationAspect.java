@@ -21,7 +21,7 @@ public class VerificationAspect {
 
 	private Logger log = Logger.getLogger(VerificationAspect.class.getName());
 
-	@Pointcut("execution(* fr.pizzeria..*.save(..))")
+	@Pointcut("execution(* fr.pizzeria.dao.pizza..*.save(..))")
 	private void anySaveMethod() {
 	}
 

@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.pizza.spring.repos.ingredient;
+package fr.pizzeria.dao.repos.ingredient;
 
 import java.util.List;
 
