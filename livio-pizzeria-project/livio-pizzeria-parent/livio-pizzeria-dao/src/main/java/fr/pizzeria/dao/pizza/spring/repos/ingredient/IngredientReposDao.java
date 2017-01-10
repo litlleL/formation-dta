@@ -21,8 +21,12 @@ public class IngredientReposDao {
 		ingredientRepo.save(ingredient);
 	}
 
-	public void update(Ingredient ingredient) {
-		ingredientRepo.save(ingredient);
+	public void update(Ingredient ingredient, int id) {
+		Ingredient ingre = ingredientRepo.findAll().stream().filter(i -> i.getId() == id).findFirst().get();
+		ingre.setNom(ingredient.getNom());
+		ingre.setPrix(ingredient.getPrix());
+		ingre.setQuantite(ingredient.getQuantite());
+		ingredientRepo.save(ingre);
 	}
 
 	public void delete(Ingredient ingredient) {

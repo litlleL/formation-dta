@@ -8,10 +8,10 @@
 		<artifactId>livio-pizzeria-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>livio-pizzeria-stock-app</artifactId>
 	<name>livio-pizzeria-stock-app</name>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -31,6 +31,10 @@
 			<artifactId>livio-pizzeria-dao</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>livio-pizzeria-model</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
@@ -45,8 +49,16 @@
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>livio-pizzeria-stock-app</finalName>
 		<plugins>
