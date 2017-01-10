@@ -4,6 +4,8 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src"/>
+        <wb-resource deploy-path="/" source-path="/target"/>
         <property name="context-root" value="livio-pizzeria-stock-app"/>
         <property name="java-output-path" value="/livio-pizzeria-stock-app/target/classes"/>
     </wb-module>
