@@ -19,6 +19,7 @@
 		<module>livio-pizzeria-console-livreur</module>
 		<module>livio-pizzeria-admin-web</module>
 		<module>livio-pizzeria-stock-app</module>
+		<module>livio-pizzeria-spring-boot</module>
 	</modules>
 
 	<build>

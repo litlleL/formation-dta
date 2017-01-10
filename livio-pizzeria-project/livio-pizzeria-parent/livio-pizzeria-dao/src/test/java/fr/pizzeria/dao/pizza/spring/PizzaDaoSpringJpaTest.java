@@ -28,7 +28,7 @@ public class PizzaDaoSpringJpaTest {
 	@Test
 	public void testSave() {
 		Pizza p = new Pizza("MAR", "mzargherita", 12.50, CategoriePizza.VIANDE);
-		pizzaDaoSpringJpa.save(p);
+		// pizzaDaoSpringJpa.save(p);
 		pizzaDaoSpringJpa.findAll().forEach(System.out::println);
 	}
 

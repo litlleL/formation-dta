@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.pizza.spring.repos.perf;
+package fr.pizzeria.dao.repos.perf;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

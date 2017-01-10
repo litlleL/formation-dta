@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="webjars/jquery/1.11.1/jquery.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.2.0/css/bootstrap.css" />
+<title>Liste de pizzas</title>
+<script type="text/javascript">
+	$.ajax({
+		url : 'http://localhost:8080/spring/pizzas',
+		type : 'GET',
+		dataType : 'JSON',
+		success : function(data) {
+			console.log(data);
+
+			$.each(data, function(index, value) {
+				console.log(index);
+				$("#tablePizza").append(
+						"<tr id = "+ value['id'] +"><td>" + value['id'] + "</td><td>" + value['code'] + "</td><td>" + value['nom']
+								+ "</td><td>" + value['prix'] + "</td><td>"
+								+ value['categoriePizza'] + "</td></tr>");
+
+			});
+
+		}
+	});
+</script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="table-responsive">
+			<table id="tablePizza" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Code</th>
+						<th>Nom</th>
+						<th>Prix</th>
+						<th>Categorie</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

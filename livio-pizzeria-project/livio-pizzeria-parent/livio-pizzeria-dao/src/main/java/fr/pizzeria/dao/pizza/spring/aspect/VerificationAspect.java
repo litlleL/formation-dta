@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import fr.pizzeria.dao.pizza.spring.repos.perf.PerfReposDao;
+import fr.pizzeria.dao.repos.perf.PerfReposDao;
 import fr.pizzeria.model.Performance;
 import fr.pizzeria.model.Pizza;
 
